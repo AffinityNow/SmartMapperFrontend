@@ -17,3 +17,10 @@ install:
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+
+notifications:
+  email:
+    recipients:
+      - smartmapperproject@gmail.com
+    on_success: always
+    on_failure: always
