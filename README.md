@@ -1,6 +1,7 @@
 # SmartMapper
 [![Build Status](https://travis-ci.com/smartmapperproject/SmartMapperFrontend.svg?branch=master)](https://travis-ci.com/smartmapperproject/SmartMapperFrontend)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
