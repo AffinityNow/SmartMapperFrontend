@@ -5,6 +5,10 @@ language: node_js
 node_js:
   - '12'
 
+branches:
+  only:
+    - master
+
 addons:
   chrome: stable
 
@@ -16,7 +20,10 @@ install:
   - npm install
 
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox --code-coverage
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 notifications:
   email:
