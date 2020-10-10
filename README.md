@@ -1,5 +1,7 @@
 # SmartMapper
 [![Build Status](https://travis-ci.com/smartmapperproject/SmartMapperFrontend.svg?branch=master)](https://travis-ci.com/smartmapperproject/SmartMapperFrontend)
+[![Coverage Status](https://coveralls.io/repos/github/smartmapperproject/SmartMapperFrontend/badge.svg?branch=master)](https://coveralls.io/github/smartmapperproject/SmartMapperFrontend?branch=master)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/smartmapperproject/SmartMapperFrontend)
 [![License](https://img.shields.io/github/license/smartmapperproject/SmartMapperFrontend.svg?style=flat-square)](LICENSE)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 

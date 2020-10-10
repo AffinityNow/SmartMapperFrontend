@@ -23,7 +23,7 @@ script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox --code-coverage
 
 after_success:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/SmartMapper/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 notifications:
   email:
