@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+# SMARTMAPPER
+[Link](url) and ![](src)
 
-You can use the [editor on GitHub](https://github.com/smartmapperproject/SmartMapperFrontend/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Présentation 
+  Smart Mapper est une application web ayant pour but de mettre à disposition de
+ses utilisateurs un système intelligent de proposition d'itinéraires et de localisation
+des adresses. Quel que soit le moyen de déplacement (à pieds, par voiture, par
+bus, par train, etc.) choisi par l'utilisateur, l’application lui proposera différents
+itinéraires respectants un certains nombres de critères, tel que le passage par
+certains types de points d’intérêts sans avoir à les préciser de façon exacte, ou
+encore une fourchette horaire qui peut impacter les itinéraires proposés.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+L’application répondra principalement aux besoins suivants ;
+* Besoin de suggestion d’itinéraires personnalisés (conseillés et alternatifs),
+* Besoin de réduire le temps d’attente,
+* Connaître les avis des utilisateurs ayant déjà utilisés certains itinéraires,
+* Donner son avis et partager des informations.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Fonctionnalité 
 
 ```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/smartmapperproject/SmartMapperFrontend/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
