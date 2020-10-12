@@ -1,5 +1,5 @@
 # SMARTMAPPER
-[Link](url) and ![](src)
+[Link](url) and ![https://i.ibb.co/1JMQD5D/Logo.png](src)
 
 ## Présentation 
   Smart Mapper est une application web ayant pour but de mettre à disposition de
@@ -17,8 +17,11 @@ L’application répondra principalement aux besoins suivants ;
 * Donner son avis et partager des informations.
 
 ## Fonctionnalité 
-
+1er fonctionnalité
 ```markdown
 
+```
+2ème fonctionnalité
+```markdown
 
 ```
