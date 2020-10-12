@@ -1,5 +1,8 @@
 # SMARTMAPPER
-[Link](url) and ![https://i.ibb.co/1JMQD5D/Logo.png](src)
+
+<center>
+![](https://i.ibb.co/1JMQD5D/Logo.png)
+</center>
 
 ## Présentation 
   Smart Mapper est une application web ayant pour but de mettre à disposition de
