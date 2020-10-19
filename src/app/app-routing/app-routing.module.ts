@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from "@angular/router";
 import {HomeComponent} from "../home/home.component";
+import {LocalisationComponent} from "../localisation/localisation.component";
 
 const routes: Routes = [
   {
     path:'',
     component: HomeComponent
   },
-  /*
+
   {
-    path:'',
-    //component:LocalisationComponent
+    path:'carte',
+    component:LocalisationComponent
   }
-  */
+
 
 ];
 
