@@ -1,0 +1,13 @@
+.logo {
+  width: 150px;
+  height: 120px;
+  display: block;
+  text-indent: -9999px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.navbar {
+  font-family: Verdana, serif !important;
+  padding-right: 20px;
+}
