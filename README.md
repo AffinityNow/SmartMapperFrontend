@@ -4,6 +4,9 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/smartmapperproject/SmartMapperFrontend)
 [![License](https://img.shields.io/github/license/smartmapperproject/SmartMapperFrontend.svg?style=flat-square)](LICENSE)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=smartmapperproject_SmartMapperFrontend&metric=alert_status)](https://sonarcloud.io/dashboard?id=smartmapperproject_SmartMapperFrontend)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=smartmapperproject_SmartMapperFrontend&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=smartmapperproject_SmartMapperFrontend)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=smartmapperproject_SmartMapperFrontend&metric=sqale_index)](https://sonarcloud.io/dashboard?id=smartmapperproject_SmartMapperFrontend)
 
 SmartMapper is a web application which proposes to user some routes to differents points of interest respecting defined criterias.
 
