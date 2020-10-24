@@ -11,6 +11,9 @@ branches:
 
 addons:
   chrome: stable
+  sonarcloud:
+    organization: "smartmapperproject"
+    token: $SONAR_TOKEN
 
 cache:
   directories:
@@ -21,6 +24,7 @@ install:
 
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox --code-coverage
+  - sonar-scanner
 
 after_success:
   - cat ./coverage/SmartMapper/lcov.info | ./node_modules/coveralls/bin/coveralls.js
