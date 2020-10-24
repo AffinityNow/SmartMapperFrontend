@@ -1,6 +1,6 @@
 import {Component, AfterViewInit} from '@angular/core';
 import * as L from 'leaflet';
-import 'mapbox-gl-leaflet';
+
 @Component({
   selector: 'app-localisation',
   templateUrl: './localisation.component.html',
