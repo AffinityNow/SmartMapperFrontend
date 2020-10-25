@@ -1,7 +1,7 @@
 # SMARTMAPPER
 
 <center>
-![](https://i.ibb.co/1JMQD5D/Logo.png)
+![](https://www.zupimages.net/up/20/43/4rm6.png)
 </center>
 
 ## Présentation 
