@@ -5,24 +5,37 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import {AppRoutingModule} from './app-routing/app-routing.module';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import { LocalisationComponent } from './localisation/localisation.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
+
+  {
+    path: 'carte',
+    component: LocalisationComponent
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
     HeaderComponent,
     HomeComponent,
-    LocalisationComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    RouterModule,
+    RouterModule.forRoot(appRoutes),
   ],
+
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })
