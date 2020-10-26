@@ -23,6 +23,11 @@ import { LocalisationComponent } from './localisation/localisation.component';
     AppRoutingModule,
     RouterModule,
   ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    AppRoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
