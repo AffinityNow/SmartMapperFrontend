@@ -1,5 +1,8 @@
-import {Component, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit, OnInit} from '@angular/core';
 import * as L from 'leaflet';
+import {FormControl} from '@angular/forms';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-localisation',
@@ -7,13 +10,15 @@ import * as L from 'leaflet';
   styleUrls: ['./localisation.component.css']
 })
 
-export class LocalisationComponent implements AfterViewInit {
+export class LocalisationComponent implements AfterViewInit, OnInit  {
   carte;
   /* https://www.zupimages.net/*/
   smallIcon = new L.Icon({
     iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png',
     iconSize:    [25, 25],
   });
+  searchField: FormControl;
+  searches: string[] = [];
 
   constructor() { }
 
@@ -21,6 +26,7 @@ export class LocalisationComponent implements AfterViewInit {
     this.createMap();
   }
 
+  // tslint:disable-next-line:typedef
   createMap() {
     const nanterre = {
       lat: 48.892423,
@@ -48,6 +54,7 @@ export class LocalisationComponent implements AfterViewInit {
     this.pins(descrip);
   }
 
+  // tslint:disable-next-line:typedef
   pins({coords, text, open}) {
     const marker = L.marker([coords.lat, coords.lng], { icon: this.smallIcon });
     if (open) {
@@ -55,5 +62,18 @@ export class LocalisationComponent implements AfterViewInit {
     } else {
       marker.addTo(this.carte).bindPopup(text);
     }
+  }
+
+  // tslint:disable-next-line:typedef
+  ngOnInit() {
+    this.searchField = new FormControl();
+    this.searchField.valueChanges
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(term => {
+        this.searches.push(term);
+      });
   }
 }
