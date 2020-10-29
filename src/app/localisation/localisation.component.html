@@ -10,6 +10,7 @@
              placeholder="où va-t-on?"
              [formControl]="searchField"
              (keydown.enter)="$event.preventDefault()"
+             required maxlength="20"
              autocorrect="off">
       <ul>
         <li *ngFor="let search of searches">{{ search }}</li>
