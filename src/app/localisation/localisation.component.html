@@ -1,6 +1,28 @@
-<div class="map-wrapper">
-  <div class="map-border">
-    <div id="map"></div>
+<!-- app.component.html -->
+<div class="body">
+
+  <div class="container">
+    <h1>Formulaire de recherche d'adresses</h1>
+    <div class="form-group">
+      <label>Entrer votre point d'intêret </label>
+      <input type="search"
+             class="form-control"
+             placeholder="où va-t-on?"
+             [formControl]="searchField"
+             (keydown.enter)="$event.preventDefault()"
+             required maxlength="20"
+             autocorrect="off">
+      <ul>
+        <li *ngFor="let search of searches">{{ search }}</li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <div class="map-wrapper">
+    <div class="map-border">
+      <div id="map"></div>
+    </div>
   </div>
 </div>
-
