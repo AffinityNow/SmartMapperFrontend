@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SmartMapper"
+    }
+  },
+  "defaultProject": "SmartMapper",
+  "cli": {
+    "analytics": false
+  }
 }
