@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.body {
+  padding: 10px;
+}
+h1{
+  font-family: "Arabic Typesetting", serif;
+  font-size: 30px;
+}
 .map-wrapper{
   top: 3cm;
   left: 0;
@@ -14,5 +21,13 @@
 #map{
   height: 100%;
   background-position: center center;
-
 }
+.container{
+  margin: auto;
+  width: 30%;
+  border: 3px solid brown;
+  padding: 10px;
+}
+
+
+

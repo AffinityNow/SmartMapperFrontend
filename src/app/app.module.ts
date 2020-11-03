@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -29,10 +30,12 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    LocalisationComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
   ],
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
