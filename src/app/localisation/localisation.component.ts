@@ -2,6 +2,8 @@ import {Component, AfterViewInit, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {FormControl} from '@angular/forms';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {control} from 'leaflet';
+import scale = control.scale;
 
 
 @Component({
@@ -15,6 +17,10 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
   /* https://www.zupimages.net/*/
   smallIcon = new L.Icon({
     iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png',
+    iconSize:    [25, 25],
+  });
+  ImageIcon = new L.Icon({
+    iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png',
     iconSize:    [25, 25],
   });
   private nanterre: { lng: number; lat: number };
@@ -40,12 +46,13 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     const elysee = { lat: 48.8763, lng: 2.3183};
     const casino = { lat: 48.898908, lng: 2.093761};
     const fleuriste = { lat: 48.9, lng: 2.23};
+    const eglise = { lat: 48.852968 , lng:	2.349902};
 
     this.carte = L.map('map', {
       center: [nanterre.lat, nanterre.lng],
       zoom: 5,
     });
-
+// 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' autre tiles
     const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 11,
       maxZoom: 15,
@@ -69,6 +76,8 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     this.pins(descrip2);
     this.pins(descrip3);
     this.pins(descrip4);
+    this.imagepins(descrip1);
+    scale().addTo(this.carte);
   }
 
   // tslint:disable-next-line:typedef
@@ -80,7 +89,14 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
       marker.addTo(this.carte).bindPopup(text);
     }
   }
-
+  imagepins({coords, text, open}) {
+    const marker = L.marker([coords.lat, coords.lng], { icon: this.ImageIcon});
+    if (open) {
+      marker.addTo(this.carte).bindPopup('<h1>Marker</h1><p>Notre dame de paris</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>').openPopup();
+    } else {
+      marker.addTo(this.carte).bindPopup('<h1>Marker</h1><p>Notre dame de paris</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>');
+    }
+  }
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.searchField = new FormControl();
