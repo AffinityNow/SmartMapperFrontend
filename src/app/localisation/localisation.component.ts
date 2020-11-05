@@ -2,6 +2,8 @@ import {Component, AfterViewInit, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {FormControl} from '@angular/forms';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {control} from 'leaflet';
+import scale = control.scale;
 
 
 @Component({
@@ -45,7 +47,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
       center: [nanterre.lat, nanterre.lng],
       zoom: 5,
     });
-
+// 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' autre tiles
     const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 11,
       maxZoom: 15,
@@ -69,6 +71,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     this.pins(descrip2);
     this.pins(descrip3);
     this.pins(descrip4);
+    scale().addTo(this.carte);
   }
 
   // tslint:disable-next-line:typedef
@@ -80,7 +83,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
       marker.addTo(this.carte).bindPopup(text);
     }
   }
-
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.searchField = new FormControl();
