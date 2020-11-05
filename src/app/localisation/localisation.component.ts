@@ -19,10 +19,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png',
     iconSize:    [25, 25],
   });
-  ImageIcon = new L.Icon({
-    iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png',
-    iconSize:    [25, 25],
-  });
   private nanterre: { lng: number; lat: number };
   private poissy: { lng: number; lat: number };
   private elysee: { lng: number; lat: number };
@@ -76,7 +72,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     this.pins(descrip2);
     this.pins(descrip3);
     this.pins(descrip4);
-    this.imagepins(descrip1);
     scale().addTo(this.carte);
   }
 
@@ -87,14 +82,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
       marker.addTo(this.carte).bindPopup(text).openPopup();
     } else {
       marker.addTo(this.carte).bindPopup(text);
-    }
-  }
-  imagepins({coords, text, open}) {
-    const marker = L.marker([coords.lat, coords.lng], { icon: this.ImageIcon});
-    if (open) {
-      marker.addTo(this.carte).bindPopup('<h1>Marker</h1><p>Notre dame de paris</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>').openPopup();
-    } else {
-      marker.addTo(this.carte).bindPopup('<h1>Marker</h1><p>Notre dame de paris</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>');
     }
   }
   // tslint:disable-next-line:typedef
