@@ -42,7 +42,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     const elysee = { lat: 48.8763, lng: 2.3183};
     const casino = { lat: 48.898908, lng: 2.093761};
     const fleuriste = { lat: 48.9, lng: 2.23};
-    const eglise = { lat: 48.852968 , lng:	2.349902};
 
     this.carte = L.map('map', {
       center: [nanterre.lat, nanterre.lng],
