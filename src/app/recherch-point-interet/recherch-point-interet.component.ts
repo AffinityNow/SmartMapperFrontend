@@ -22,26 +22,10 @@ export class RecherchPointInteretComponent implements AfterViewInit {
     const coordsFromBrowser = { lat: coordsParis.lat, lng: coordsParis.lng };
 
 
-    navigator.geolocation.getCurrentPosition((location) => {
-      const latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-
-      const mymap = L.map('mapid').setView(latlng, 13);
-      L.tileLayer('', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
-          ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-
-      }).addTo(mymap);
-
-      const marker = L.marker(latlng).addTo(mymap);
-    });
-
     const map = L.map('map').setView(
       [coordsFromBrowser.lat, coordsFromBrowser.lng],
-      10
+      12
     );
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -64,7 +48,7 @@ export class RecherchPointInteretComponent implements AfterViewInit {
         const result = data.results[i];
         const marker = L.marker(result.latlng);
         // @ts-ignore
-        markers = [...markers, , L.marker(marker)];
+        markers = [...markers, L.marker(marker)];
         results.addLayer(marker);
         marker.on('click', addRadius);
         console.log('markers', markers);
@@ -85,3 +69,19 @@ export class RecherchPointInteretComponent implements AfterViewInit {
     }
   }
 }
+
+/*
+    navigator.geolocation.getCurrentPosition((location) => {
+      const latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+      const mymap = L.map('map').setView(latlng, 13);
+      L.tileLayer('', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
+          ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+
+      }).addTo(mymap);
+
+      const marker = L.marker(latlng).addTo(mymap);
+    });
+ */
