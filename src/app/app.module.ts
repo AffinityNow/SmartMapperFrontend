@@ -9,6 +9,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import { GeolocalsiationComponent } from './geolocalsiation/geolocalsiation.component';
 
 
 
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     LocalisationComponent,
+    GeolocalsiationComponent,
   ],
   imports: [
     BrowserModule,

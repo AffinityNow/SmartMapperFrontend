@@ -19,6 +19,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
     iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png',
     iconSize:    [25, 25],
   });
+
   private nanterre: { lng: number; lat: number };
   private poissy: { lng: number; lat: number };
   private elysee: { lng: number; lat: number };
@@ -95,4 +96,6 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
         this.searches.push(term);
       });
   }
+
+
 }
