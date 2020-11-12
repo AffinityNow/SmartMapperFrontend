@@ -1,8 +1,19 @@
 import {AfterViewInit, Component} from '@angular/core';
+import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
-import * as esri_geo from 'esri-leaflet-geocoder';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
+import * as ELG from 'esri-leaflet-geocoder';
+// @ts-ignore
+import Leaflet from 'leaflet';
 
+delete Leaflet.Icon.Default.prototype._getIconUrl;
 
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
+});
 
 @Component({
   selector: 'app-recherch-point-interet',
@@ -10,34 +21,22 @@ import * as esri_geo from 'esri-leaflet-geocoder';
   styleUrls: ['./recherch-point-interet.component.css']
 })
 export class RecherchPointInteretComponent implements AfterViewInit {
-
-  constructor() {}
+  marker;
 
   ngAfterViewInit(): void {
     this.createMap();
   }
 
-  private createMap(): void{
-    const coordsParis = { lat: 48.8534, lng: 2.3488 };
-    const coordsFromBrowser = { lat: coordsParis.lat, lng: coordsParis.lng };
-
-
+  private createMap(): void {
+    const coordsParis = {lat: 48.8534, lng: 2.3488};
+    const coordsFromBrowser = {lat: coordsParis.lat, lng: coordsParis.lng};
     const map = L.map('map').setView(
       [coordsFromBrowser.lat, coordsFromBrowser.lng],
       12
     );
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-
-    const searchControl = esri_geo.geosearch().addTo(map);
-
-    const results =  L.layerGroup().addTo(map);
-
+    const searchControl = ELG.geosearch().addTo(map);
+    const results = L.layerGroup().addTo(map);
     let markers = [];
-
-
 
     searchControl.on('results', (data) => {
       markers = [];
@@ -47,16 +46,30 @@ export class RecherchPointInteretComponent implements AfterViewInit {
       for (let i = data.results.length - 1; i >= 0; i--) {
         const result = data.results[i];
         const marker = L.marker(result.latlng);
-        // @ts-ignore
-        markers = [...markers, L.marker(marker)];
+        markers = [...markers];
         results.addLayer(marker);
-        marker.on('click', addRadius);
+        marker.on('mouseover', addRadius);
+        console.log(new ELG.ReverseGeocode());
+        marker.on('click', <LeafletMouseEvent>(e) => {
+          new ELG.ReverseGeocode().latlng(e.latlng).run((error, res) => {
+            if (error) {
+              return;
+            }
+            if (this.marker && map.hasLayer(this.marker)) {
+              map.removeLayer(this.marker);
+            }
+
+            this.marker = L.marker(result.latlng)
+              .addTo(map)
+              .bindPopup(res.address.Match_addr)
+              .openPopup();
+          });
+        });
         console.log('markers', markers);
       }
     });
 
-
-    function addRadius(marker, radius = 1000): any  {
+    function addRadius(marker, radius = 1000): any {
       console.log('marker clicked', marker);
       const circle = L.circle([marker.latlng.lat, marker.latlng.lng], {
         radius,
@@ -67,6 +80,14 @@ export class RecherchPointInteretComponent implements AfterViewInit {
         map.setZoom(15);
       }, 1000);
     }
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+      tileSize: 512,
+      zoomOffset: -1,
+    }).addTo(map);
   }
 }
 
