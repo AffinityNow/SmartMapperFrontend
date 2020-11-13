@@ -12,24 +12,13 @@ import scale = control.scale;
   styleUrls: ['./localisation.component.css']
 })
 
-export class LocalisationComponent implements AfterViewInit, OnInit  {
-  carte;
-  /* https://www.zupimages.net/*/
-  smallIcon = new L.Icon({
-    iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png',
-    iconSize:    [25, 25],
-  });
-
-  private nanterre: { lng: number; lat: number };
-  private poissy: { lng: number; lat: number };
-  private elysee: { lng: number; lat: number };
-  private casino: { lng: number; lat: number };
-  private fleuriste: { lng: number; lat: number };
-
+export class LocalisationComponent implements AfterViewInit, OnInit {
   searchField: FormControl;
   searches: string[] = [];
+  carte;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngAfterViewInit(): void {
     this.createMap();
@@ -37,55 +26,66 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
 
   // tslint:disable-next-line:typedef
   createMap() {
-    // les mettre dans une arraylist je vais faire apres
-    const nanterre = { lat: 48.892423, lng: 2.215331 };
-    const poissy = { lat: 48.9333, lng: 2.05};
-    const elysee = { lat: 48.8763, lng: 2.3183};
-    const casino = { lat: 48.898908, lng: 2.093761};
-    const fleuriste = { lat: 48.9, lng: 2.23};
-
-    this.carte = L.map('map', {
-      center: [nanterre.lat, nanterre.lng],
-      zoom: 5,
-    });
-// 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}' autre tiles
-    const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 11,
-      maxZoom: 15,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-
-    mainLayer.addTo(this.carte);
-// ici il faut faire moin de ligne
-    const description = `Mr Delbot house aka le chef du corona `;
-    const descrip = {coords: nanterre, text: description,  open: true };
-    const description1 = `Le palais de l'Élysée, dit l'Élysée, est un ancien hôtel particulier parisien, situé au nᵒ 55 de la rue du Faubourg-Saint-Honoré, dans le 8ᵉ arrondissement de Paris. Il est le siège de la présidence de la République française et la résidence officielle du président de la République depuis la IIᵉ République.`;
-    const descrip1 = {coords: elysee, text: description1,  open: true };
-    const description2 = `Poissy est une commune française du département des Yvelines en région Île-de-France. La ville possède une longue histoire.ville de ST louis le  Louis IX`;
-    const descrip2 = {coords: poissy, text: description2,  open: true };
-    const description3 = `mon fleuristeUn fleuriste est un artisan spécialisé dans la vente de fleurs et la confection de bouquets de fleurs et d'assemblages appelés « compositions » de courbevoie `;
-    const descrip3 = {coords: fleuriste, text: description3,  open: true };
-    const description4 = `mon magasin à st germain  `;
-    const descrip4 = {coords: casino, text: description4,  open: true };
-    this.pins(descrip);
-    this.pins(descrip1);
-    this.pins(descrip2);
-    this.pins(descrip3);
-    this.pins(descrip4);
-    scale().addTo(this.carte);
-  }
-
-  // tslint:disable-next-line:typedef
-  pins({coords, text, open}) {
-    const marker = L.marker([coords.lat, coords.lng], { icon: this.smallIcon });
-    if (open) {
-      marker.addTo(this.carte).bindPopup(text).openPopup();
-    } else {
-      marker.addTo(this.carte).bindPopup(text);
+    if (!navigator.geolocation) {
+      console.log('location is not supported');
     }
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coords = position.coords;
+      const latLong = [coords.latitude, coords.longitude];
+      console.log(
+        `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
+      );
+      // @ts-ignore
+      // tslint:disable-next-line:no-shadowed-variable
+      this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
+
+      // @ts-ignore
+      L.tileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3VicmF0MDA3IiwiYSI6ImNrYjNyMjJxYjBibnIyem55d2NhcTdzM2IifQ.-NnMzrAAlykYciP4RP9zYQ',
+        {
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1IjoiYXZpMjIwNiIsImEiOiJja2hnNXZrcW0wcG5lMnpvNGk1NzdpM2ZwIn0.BPLizxhfP4RP6hELi6SPJA',
+        }
+      ).addTo(this.carte);
+      // @ts-ignore
+      const marker = L.marker(latLong).addTo(this.carte);
+      marker.bindPopup('<b>You are here</b>').openPopup();
+
+      // @ts-ignore
+      // @ts-ignore
+    });
+    this.watchPosition();
   }
   // tslint:disable-next-line:typedef
-  ngOnInit() {
+    watchPosition(){
+      const desLat = 0;
+      const desLon = 0;
+      const id = navigator.geolocation.watchPosition(
+        (position) => {
+          console.log(
+            `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
+          );
+          if (position.coords.latitude === desLat) {
+            navigator.geolocation.clearWatch(id);
+          }
+        },
+        (err) => {
+          console.log(err);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        }
+      );
+    }
+  ngOnInit(): void {
+    this.createMap();
     this.searchField = new FormControl();
     this.searchField.valueChanges
       .pipe(
@@ -95,7 +95,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit  {
       .subscribe(term => {
         this.searches.push(term);
       });
+
   }
-
-
 }
+

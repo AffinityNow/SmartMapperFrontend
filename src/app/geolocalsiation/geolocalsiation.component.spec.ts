@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeolocalsiationComponent } from './geolocalsiation.component';
+import { GeolocationComponent } from './geolocalsiation.component';
 
 describe('GeolocalsiationComponent', () => {
-  let component: GeolocalsiationComponent;
-  let fixture: ComponentFixture<GeolocalsiationComponent>;
+  let component: GeolocationComponent;
+  let fixture: ComponentFixture<GeolocationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GeolocalsiationComponent ]
+      declarations: [ GeolocationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeolocalsiationComponent);
+    fixture = TestBed.createComponent(GeolocationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
