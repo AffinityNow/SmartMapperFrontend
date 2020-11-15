@@ -9,6 +9,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ItineraireComponent } from './itineraire/itineraire.component';
 
 
 
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     LocalisationComponent,
+    ItineraireComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,3 +45,5 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
