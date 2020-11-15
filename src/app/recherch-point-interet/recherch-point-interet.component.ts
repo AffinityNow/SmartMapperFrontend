@@ -32,7 +32,7 @@ export class RecherchPointInteretComponent implements AfterViewInit {
     const coordsFromBrowser = {lat: coordsParis.lat, lng: coordsParis.lng};
     const map = L.map('map').setView(
       [coordsFromBrowser.lat, coordsFromBrowser.lng],
-      12
+      10
     );
     const searchControl = ELG.geosearch().addTo(map);
     const results = L.layerGroup().addTo(map);
