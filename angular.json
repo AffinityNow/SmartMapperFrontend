@@ -144,7 +144,6 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/map-lib/src/test.ts",
-            "tsConfig": "projects/map-lib/tsconfig.spec.json",
             "karmaConfig": "projects/map-lib/karma.conf.js"
           }
         },
@@ -152,8 +151,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/map-lib/tsconfig.lib.json",
-              "projects/map-lib/tsconfig.spec.json"
+              "projects/map-lib/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
