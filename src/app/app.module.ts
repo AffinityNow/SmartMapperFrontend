@@ -12,12 +12,12 @@ import {RecherchPointInteretComponent} from './recherch-point-interet/recherch-p
 
 
 
+
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
   },
-
   {
     path: 'rechercheAdresse',
     component: RecherchPointInteretComponent
