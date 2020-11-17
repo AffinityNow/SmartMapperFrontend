@@ -5,11 +5,11 @@ import scale = control.scale;
 
 @Component({
   selector: 'app-localisation',
-  templateUrl: './localisation.component.html',
-  styleUrls: ['./localisation.component.css']
+  templateUrl: './geolocalisation.component.html',
+  styleUrls: ['./geolocalisation.component.css']
 })
 
-export class LocalisationComponent implements AfterViewInit, OnInit {
+export class GeolocalisationComponent implements AfterViewInit, OnInit {
   carte;
 
   constructor() {

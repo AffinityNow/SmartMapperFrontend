@@ -6,9 +6,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
-import { LocalisationComponent } from './localisation/localisation.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {GeolocalisationComponent} from './geolocalisation/geolocalisation.component';
 
 
 
@@ -19,8 +19,8 @@ const appRoutes: Routes = [
   },
 
   {
-    path: 'carte',
-    component: LocalisationComponent
+    path: 'geolocalisation',
+    component: GeolocalisationComponent
   }
 ];
 
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    LocalisationComponent,
+    GeolocalisationComponent,
   ],
   imports: [
     BrowserModule,
