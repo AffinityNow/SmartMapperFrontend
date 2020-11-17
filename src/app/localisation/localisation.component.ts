@@ -1,10 +1,7 @@
 import {Component, AfterViewInit, OnInit} from '@angular/core';
 import * as L from 'leaflet';
-import {FormControl} from '@angular/forms';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {control} from 'leaflet';
 import scale = control.scale;
-
 
 @Component({
   selector: 'app-localisation',
@@ -13,8 +10,6 @@ import scale = control.scale;
 })
 
 export class LocalisationComponent implements AfterViewInit, OnInit {
-  searchField: FormControl;
-  searches: string[] = [];
   carte;
 
   constructor() {
@@ -23,9 +18,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.createMap();
   }
-
-  // tslint:disable-next-line:typedef
-  createMap() {
+  createMap(): void {
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
@@ -35,11 +28,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
       console.log(
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
-      // @ts-ignore
-      // tslint:disable-next-line:no-shadowed-variable
       this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
-
-      // @ts-ignore
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXZpMjIwNiIsImEiOiJja2hnNXZrcW0wcG5lMnpvNGk1NzdpM2ZwIn0.BPLizxhfP4RP6hELi6SPJA',
         {
@@ -55,14 +44,10 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
       // @ts-ignore
       const marker = L.marker(latLong).addTo(this.carte);
       marker.bindPopup('<b>You are here</b>').openPopup();
-
-      // @ts-ignore
-      // @ts-ignore
     });
     this.watchPosition();
   }
-  // tslint:disable-next-line:typedef
-    watchPosition(){
+    watchPosition(): void {
       const desLat = 0;
       const desLon = 0;
       const id = navigator.geolocation.watchPosition(
@@ -86,16 +71,7 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
     }
   ngOnInit(): void {
     this.createMap();
-    this.searchField = new FormControl();
-    this.searchField.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged()
-      )
-      .subscribe(term => {
-        this.searches.push(term);
-      });
-
   }
 }
+
 
