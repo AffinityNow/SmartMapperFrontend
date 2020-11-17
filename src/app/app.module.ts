@@ -8,7 +8,12 @@ import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
+
 import {GeolocalisationComponent} from './geolocalisation/geolocalisation.component';
+
+import {RecherchPointInteretComponent} from './recherch-point-interet/recherch-point-interet.component';
+
+
 
 
 
@@ -17,10 +22,12 @@ const appRoutes: Routes = [
     path: '',
     component: HomeComponent
   },
-
   {
     path: 'geolocalisation',
-    component: GeolocalisationComponent
+    component: GeolocalisationComponent},
+
+  {path: 'rechercheAdresse',
+    component: RecherchPointInteretComponent
   }
 ];
 
@@ -31,6 +38,7 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     GeolocalisationComponent,
+    RecherchPointInteretComponent,
   ],
   imports: [
     BrowserModule,
