@@ -21,12 +21,22 @@ L’application répondra principalement aux besoins suivants ;
 ## Fonctionnalités 
 1er fonctionnalité
 ```markdown
-Affichage d'un itinéraire entre un point A et B chosit 
-au préalable par l'utilisateur. L'utilisateur aura la possibilité de choisir
-parmis differents itinénaires en fonction de ses besoins. 
+Géolocalisation sur la carte de la position de l'utilisateur via le navigateur.
 ```
 2ème fonctionnalité
 ```markdown
-Affichage de differentes informations relative à un point d'interet
-(comme par exemple horraire d'ouverture, affluence etc ...)
+Recherche et affichage sur la carte d'un point d'interet. Un cerlce d'un diametre de 1km 
+est tracé et nous permet de voir le rayon d'action autours de ce point.
 ```
+
+##Contributeurs :
+
+- [ ] Chakir Ardenne - Master 1 Devops project
+  -  Github Account : <https://github.com/ChakirArdenne>
+- [ ] Avi Assayag - Master 1 Devops project
+  -  Github Account : <https://github.com/AssayagAvi>
+- [ ] Erwyn Ramin - Master 1 Devops project
+  -  Github Account : <https://github.com/Ramin-Erwyn>
+- [ ] Ahlem Fantazi - Master 1 Devops project
+  -  Github Account : <https://github.com/AhlemFANTA>
+
