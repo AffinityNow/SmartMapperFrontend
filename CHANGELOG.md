@@ -27,4 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Possibilité de rechercher un point d'intérêt grâce à un formulaire de recherche
 
 
+## [v0.4] - 18/11/2020
 
+### Added
+- Rechercher un point d'intérêt et le visualiser sur une carte avec un rayon de 1 km autour de l'adresse 
