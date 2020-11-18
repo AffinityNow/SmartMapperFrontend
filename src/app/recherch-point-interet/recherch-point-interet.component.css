@@ -1,0 +1,14 @@
+#html, #body {
+  height: 100%;
+}
+#map-container {
+  position: relative;
+  height: 1000px;
+  width:2100px;
+}
+
+#map {
+  position: relative;
+  height: inherit;
+  width: inherit;
+}
