@@ -10,20 +10,25 @@ import { RecherchPointInteretComponent } from './carte/recherch-point-interet/re
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './shared/home/home.component';
+import {RecherchMotCleComponent} from './carte/recherch-mot-cle/recherch-mot-cle.component';
 
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
-  },
-  {
+  }
+  , {
     path: 'localisation',
     component: LocalisationComponent
-  },
-  {
+  }
+  , {
     path: 'rechercheAdresse',
     component: RecherchPointInteretComponent
+  }
+  , {
+    path: 'recherchePOI',
+    component: RecherchMotCleComponent
   }
 ];
 
@@ -34,7 +39,8 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     LocalisationComponent,
-    RecherchPointInteretComponent
+    RecherchPointInteretComponent,
+    RecherchMotCleComponent,
   ],
   imports: [
     BrowserModule,
