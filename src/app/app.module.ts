@@ -9,8 +9,6 @@ import {RouterModule, Routes} from '@angular/router';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import { ItineraireComponent } from './itineraire/itineraire.component';
-
 
 
 const appRoutes: Routes = [
@@ -31,8 +29,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    LocalisationComponent,
-    ItineraireComponent,
+    LocalisationComponent
   ],
   imports: [
     BrowserModule,
