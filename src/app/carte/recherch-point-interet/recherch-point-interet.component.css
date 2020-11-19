@@ -1,14 +1,19 @@
 #html, #body {
   height: 100%;
 }
-#map-container {
-  position: relative;
-  height: 1000px;
-  width:2100px;
+.map-wrapper{
+  top: 3cm;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 20px;
+  height: 17cm;
 }
-
-#map {
-  position: relative;
-  height: inherit;
-  width: inherit;
+.map-border{
+  border: 5px solid darkred;
+  height: 100%;
+}
+#map{
+  height: 100%;
+  background-position: center center;
 }
