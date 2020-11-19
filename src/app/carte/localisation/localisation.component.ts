@@ -6,7 +6,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
 import scale = control.scale;
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppComponent} from '../app.component';
+import {AppComponent} from '../../app.component';
 import {BrowserModule} from '@angular/platform-browser';
 import zoom = control.zoom;
 import 'leaflet-routing-machine';
