@@ -1,0 +1,65 @@
+Index: src/app/localisation/localisation.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import {Component, AfterViewInit, OnInit} from '@angular/core';\nimport * as L from 'leaflet';\nimport {FormControl} from '@angular/forms';\nimport {debounceTime, distinctUntilChanged} from 'rxjs/operators';\nimport {control} from 'leaflet';\nimport scale = control.scale;\n\n\n@Component({\n  selector: 'app-localisation',\n  templateUrl: './localisation.component.html',\n  styleUrls: ['./localisation.component.css']\n})\n\nexport class LocalisationComponent implements AfterViewInit, OnInit {\n  searchField: FormControl;\n  searches: string[] = [];\n  carte;\n\n  constructor() {\n  }\n\n  ngAfterViewInit(): void {\n    this.createMap();\n  }\n\n  // tslint:disable-next-line:typedef\n  createMap() {\n    if (!navigator.geolocation) {\n      console.log('location is not supported');\n    }\n    navigator.geolocation.getCurrentPosition((position) => {\n      const coords = position.coords;\n      const latLong = [coords.latitude, coords.longitude];\n      console.log(\n        `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`\n      );\n      // @ts-ignore\n      // tslint:disable-next-line:no-shadowed-variable\n      this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);\n\n      // @ts-ignore\n      L.tileLayer(\n        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXZpMjIwNiIsImEiOiJja2hnNXZrcW0wcG5lMnpvNGk1NzdpM2ZwIn0.BPLizxhfP4RP6hELi6SPJA',\n        {\n          attribution:\n            'Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>',\n          maxZoom: 18,\n          id: 'mapbox/streets-v11',\n          tileSize: 512,\n          zoomOffset: -1,\n          accessToken: 'pk.eyJ1IjoiYXZpMjIwNiIsImEiOiJja2hnNXZrcW0wcG5lMnpvNGk1NzdpM2ZwIn0.BPLizxhfP4RP6hELi6SPJA',\n        }\n      ).addTo(this.carte);\n      // @ts-ignore\n      const marker = L.marker(latLong).addTo(this.carte);\n      marker.bindPopup('<b>You are here</b>').openPopup();\n\n      // @ts-ignore\n      // @ts-ignore\n    });\n    this.watchPosition();\n  }\n  // tslint:disable-next-line:typedef\n    watchPosition(){\n      const desLat = 0;\n      const desLon = 0;\n      const id = navigator.geolocation.watchPosition(\n        (position) => {\n          console.log(\n            `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`\n          );\n          if (position.coords.latitude === desLat) {\n            navigator.geolocation.clearWatch(id);\n          }\n        },\n        (err) => {\n          console.log(err);\n        },\n        {\n          enableHighAccuracy: true,\n          timeout: 5000,\n          maximumAge: 0,\n        }\n      );\n    }\n  ngOnInit(): void {\n    this.createMap();\n    this.searchField = new FormControl();\n    this.searchField.valueChanges\n      .pipe(\n        debounceTime(1000),\n        distinctUntilChanged()\n      )\n      .subscribe(term => {\n        this.searches.push(term);\n      });\n\n  }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/localisation/localisation.component.ts	(revision 0fe81fa9ba42d3da5c8820623f8ec66505b5a14c)
++++ src/app/localisation/localisation.component.ts	(date 1605644918894)
+@@ -23,9 +23,7 @@
+   ngAfterViewInit(): void {
+     this.createMap();
+   }
+-
+-  // tslint:disable-next-line:typedef
+-  createMap() {
++  createMap(): void {
+     if (!navigator.geolocation) {
+       console.log('location is not supported');
+     }
+@@ -35,11 +33,7 @@
+       console.log(
+         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
+       );
+-      // @ts-ignore
+-      // tslint:disable-next-line:no-shadowed-variable
+       this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
+-
+-      // @ts-ignore
+       L.tileLayer(
+         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXZpMjIwNiIsImEiOiJja2hnNXZrcW0wcG5lMnpvNGk1NzdpM2ZwIn0.BPLizxhfP4RP6hELi6SPJA',
+         {
+@@ -55,14 +49,10 @@
+       // @ts-ignore
+       const marker = L.marker(latLong).addTo(this.carte);
+       marker.bindPopup('<b>You are here</b>').openPopup();
+-
+-      // @ts-ignore
+-      // @ts-ignore
+     });
+     this.watchPosition();
+   }
+-  // tslint:disable-next-line:typedef
+-    watchPosition(){
++    watchPosition(): void {
+       const desLat = 0;
+       const desLon = 0;
+       const id = navigator.geolocation.watchPosition(
+@@ -86,16 +76,6 @@
+     }
+   ngOnInit(): void {
+     this.createMap();
+-    this.searchField = new FormControl();
+-    this.searchField.valueChanges
+-      .pipe(
+-        debounceTime(1000),
+-        distinctUntilChanged()
+-      )
+-      .subscribe(term => {
+-        this.searches.push(term);
+-      });
+-
+   }
+ }
+ 

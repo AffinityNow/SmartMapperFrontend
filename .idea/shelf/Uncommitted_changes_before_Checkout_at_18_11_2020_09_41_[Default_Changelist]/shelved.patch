@@ -1,0 +1,24 @@
+Index: index.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># SMARTMAPPER\n\n![Logo SmartMapper](Logo.png)\n\n\n## Présentation \n  Smart Mapper est une application web ayant pour but de mettre à disposition de\nses utilisateurs un système intelligent de proposition d'itinéraires et de localisation\ndes adresses. Quel que soit le moyen de déplacement (à pieds, par voiture, par\nbus, par train, etc.) choisi par l'utilisateur, l’application lui proposera différents\nitinéraires respectants un certains nombres de critères, tel que le passage par\ncertains types de points d’intérêts sans avoir à les préciser de façon exacte, ou\nencore une fourchette horaire qui peut impacter les itinéraires proposés.\n\nL’application répondra principalement aux besoins suivants ;\n* Besoin de suggestion d’itinéraires personnalisés (conseillés et alternatifs),\n* Besoin de réduire le temps d’attente,\n* Connaître les avis des utilisateurs ayant déjà utilisés certains itinéraires,\n* Donner son avis et partager des informations.\n\n## Fonctionnalités \n1er fonctionnalité\n```markdown\nAffichage d'un itinéraire entre un point A et B chosit \nau préalable par l'utilisateur. L'utilisateur aura la possibilité de choisir\nparmis differents itinénaires en fonction de ses besoins. \n```\n2ème fonctionnalité\n```markdown\nAffichage de differentes informations relative à un point d'interet\n(comme par exemple horraire d'ouverture, affluence etc ...)\n```\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- index.md	(revision ed42baae6f423c6aba6ba5947beb85b4296e8eae)
++++ index.md	(date 1605688836435)
+@@ -21,12 +21,9 @@
+ ## Fonctionnalités 
+ 1er fonctionnalité
+ ```markdown
+-Affichage d'un itinéraire entre un point A et B chosit 
+-au préalable par l'utilisateur. L'utilisateur aura la possibilité de choisir
+-parmis differents itinénaires en fonction de ses besoins. 
++Geolocalisation de l'utilisateur sur la carte. 
+ ```
+ 2ème fonctionnalité
+ ```markdown
+-Affichage de differentes informations relative à un point d'interet
+-(comme par exemple horraire d'ouverture, affluence etc ...)
++Rechercher un point d'interet et l'afficher sur la carte avec un rayon de 1 km
+ ```
