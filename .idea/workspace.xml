@@ -19,11 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Mise a jour page web">
-      <change afterPath="$PROJECT_DIR$/src/app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" />
+    <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Nouveau Design">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +149,8 @@
       <workItem from="1605725618992" duration="2261000" />
       <workItem from="1605803675397" duration="126000" />
       <workItem from="1605803833803" duration="119000" />
-      <workItem from="1605881792849" duration="635000" />
+      <workItem from="1605881792849" duration="1853000" />
+      <workItem from="1605884430711" duration="294000" />
     </task>
     <task id="LOCAL-00001" summary="Géolocalisation fixé &quot;map + icone&quot;">
       <created>1605274047035</created>
@@ -203,7 +201,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605728253294</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Mise a jour page web">
+      <created>1605882510184</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605882510185</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Nouveau Design">
+      <created>1605882930613</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605882930613</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +242,8 @@
     <MESSAGE value="Merge Ok" />
     <MESSAGE value="Mise en page des deux cartes egales" />
     <MESSAGE value="Mise a jour page web" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise a jour page web" />
+    <MESSAGE value="Nouveau Design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nouveau Design" />
   </component>
   <component name="WindowStateProjectService">
     <state x="443" y="278" key="#Notifications" timestamp="1605697941256">
@@ -345,11 +358,12 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605189081207" />
-    <state x="320" y="143" key="Vcs.Push.Dialog.v2" timestamp="1605728259568">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="320" y="151" key="Vcs.Push.Dialog.v2" timestamp="1605882979151">
+      <screen x="0" y="25" width="1440" height="793" />
     </state>
     <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605728259568" />
     <state x="320" y="150" key="Vcs.Push.Dialog.v2/0.23.1440.800@0.23.1440.800" timestamp="1605274051704" />
+    <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.793@0.25.1440.793" timestamp="1605882979151" />
     <state x="426" y="160" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1605882402533">
       <screen x="0" y="25" width="1440" height="793" />
     </state>
