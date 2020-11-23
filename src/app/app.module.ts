@@ -10,9 +10,19 @@ import { RecherchPointInteretComponent } from './carte/recherch-point-interet/re
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './shared/home/home.component';
-import { ConnexionComponent } from './espace-utilisateur/connexion/connexion.component'
-import { InscriptionComponent } from './espace-utilisateur/inscription/inscription.component'
-
+import { ConnexionComponent } from './espace-utilisateur/connexion/connexion.component';
+import { InscriptionComponent } from './espace-utilisateur/inscription/inscription.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatCardModule,
+  MatTabsModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatIconModule
+} from '@angular/material';
 
 const appRoutes: Routes = [
   {
@@ -52,6 +62,17 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatInputModule,
+    MatCardModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule
   ],
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
