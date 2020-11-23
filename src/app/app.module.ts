@@ -2,21 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RecherchPointInteretComponent} from './recherch-point-interet/recherch-point-interet.component';
-
-
+import { LocalisationComponent } from './carte/localisation/localisation.component';
+import { RecherchPointInteretComponent } from './carte/recherch-point-interet/recherch-point-interet.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { HomeComponent } from './shared/home/home.component';
 
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'localisation',
+    component: LocalisationComponent
   },
   {
     path: 'rechercheAdresse',
@@ -30,7 +33,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    RecherchPointInteretComponent,
+    LocalisationComponent,
+    RecherchPointInteretComponent
   ],
   imports: [
     BrowserModule,
@@ -43,3 +47,5 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
