@@ -1,5 +1,7 @@
 #html, #body {
+    font-family: Roboto, Arial, sans-serif;
     height: 100%;
+    margin: 0;
 }
 .map-wrapper{
     top: 3cm;
@@ -7,7 +9,7 @@
     right: 0;
     bottom: 0;
     margin: 20px;
-    height: 17cm;
+    height: 20cm;
 }
 .map-border{
     border: 5px solid darkred;

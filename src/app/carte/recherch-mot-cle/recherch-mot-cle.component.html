@@ -14,16 +14,23 @@
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
     <script src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js"></script>
-    <script src="/assets/maps/leaflet-control/geojson-data.js"></script>
+    <script src="/src/assets/maps/leaflet-control/geojson-data.json"></script>
     <script src="/assets/maps/leaflet-control/icon-provider.js"></script>
-
-
 </head>
+
 <body>
+<mat-form-field appearance="fill">
+    <mat-label>Points d'intérêt</mat-label>
+    <mat-select [formControl]="pointInteretCtrl" multiple [(value)]="pointInteretSelectionnes" (selectionChange)="dessinerMarker($event)">
+        <mat-option *ngFor="let pi of pointInteretList" [value]="pi">{{pi}}</mat-option>
+    </mat-select>
+</mat-form-field>
+{{pointInteretSelectionnes}}
 <div class="map-wrapper">
     <div class="map-border">
         <div id="map"></div>
     </div>
 </div>
 </body>
+
 </html>
