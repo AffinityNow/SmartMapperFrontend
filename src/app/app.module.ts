@@ -11,7 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './shared/home/home.component';
 import { ConnexionComponent } from './espace-utilisateur/connexion/connexion.component'
-
+import { InscriptionComponent } from './espace-utilisateur/inscription/inscription.component'
 
 
 const appRoutes: Routes = [
@@ -30,6 +30,10 @@ const appRoutes: Routes = [
   {
     path: 'connexion',
     component: ConnexionComponent
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent
   }
 ];
 
@@ -41,7 +45,8 @@ const appRoutes: Routes = [
     FooterComponent,
     LocalisationComponent,
     RecherchPointInteretComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
