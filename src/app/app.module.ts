@@ -10,6 +10,8 @@ import { RecherchPointInteretComponent } from './carte/recherch-point-interet/re
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './shared/home/home.component';
+import { ConnexionComponent } from './espace-utilisateur/connexion/connexion.component'
+
 
 
 const appRoutes: Routes = [
@@ -24,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'rechercheAdresse',
     component: RecherchPointInteretComponent
+  },
+  {
+    path: 'connexion',
+    component: ConnexionComponent
   }
 ];
 
@@ -34,7 +40,8 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     LocalisationComponent,
-    RecherchPointInteretComponent
+    RecherchPointInteretComponent,
+    ConnexionComponent
   ],
   imports: [
     BrowserModule,
