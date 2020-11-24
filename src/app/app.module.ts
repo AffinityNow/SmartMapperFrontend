@@ -14,15 +14,6 @@ import { ConnexionComponent } from './espace-utilisateur/connexion/connexion.com
 import { InscriptionComponent } from './espace-utilisateur/inscription/inscription.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatCardModule,
-  MatTabsModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule
-} from '@angular/material';
 
 const appRoutes: Routes = [
   {
@@ -65,14 +56,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    MatInputModule,
-    MatCardModule,
-    MatTabsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule
+    FormsModule
   ],
 
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
