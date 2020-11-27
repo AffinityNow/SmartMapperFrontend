@@ -2,9 +2,9 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import * as L from 'leaflet';
 import {FormControl} from '@angular/forms';
-import {CateroriesPointInteret, PointInteret} from '../../shared/model/pointInteret';
+import {CateroriesPointInteret, Champs, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
-import {LatLngTuple} from 'leaflet';
+
 
 
 @Component({
@@ -12,7 +12,7 @@ import {LatLngTuple} from 'leaflet';
   templateUrl: './recherch-point-interet.component.html',
   styleUrls: ['./recherch-point-interet.component.css']
 })
-export class RecherchPointInteretComponent  implements OnInit, AfterViewInit {
+export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
   pointInteretCtrl = new FormControl();
   pointInteretList: string[];
   pointInteretSelectionnes: string[];
@@ -37,31 +37,31 @@ export class RecherchPointInteretComponent  implements OnInit, AfterViewInit {
     );
   }
 
-  dessinerMarker(event) {
+  drawMarker(event) {
     const pointInteretSelectionnes = event.value;
     console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
-    const positions = this.getPosition(pointInteretSelectionnes);
-    console.log('positions : ' + positions);
-    positions.forEach(position => L.marker(position).addTo(this.map));
+    const pids = this.getPointInteret(pointInteretSelectionnes);
+    console.log('positions : ' + pids);
+    pids.forEach(pid =>
+      L.marker(pid.wgs84).addTo(this.map).bindPopup(pid.description).openPopup());
   }
 
-  private getPosition(categories: string[]): LatLngTuple[] {
-    const positions = [];
+  private getPointInteret(categories: string[]): Champs[] {
+    const champs = [];
     this.pointInteretData.forEach(pid => {
       if (categories.includes(pid.fields.categorie1) || categories.includes(pid.fields.categorie2) || categories.includes(pid.fields.categorie3)) {
-        positions.push(pid.fields.wgs84);
+        champs.push(pid.fields);
       }
     });
-    return positions;
+    return champs;
   }
-
 
   private createMap(): void {
     const coordsIssy = {lat: 48.8245306, lng: 2.2743419};
     const coordsFromBrowser = {lat: coordsIssy.lat, lng: coordsIssy.lng};
     this.map = L.map('map').setView(
       [coordsFromBrowser.lat, coordsFromBrowser.lng],
-      20
+      15
     );
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; ' +

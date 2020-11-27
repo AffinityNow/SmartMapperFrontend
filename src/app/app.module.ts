@@ -17,7 +17,7 @@ import {PointInteretService} from './shared/service/point-interet.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RecherchPointInteretComponent} from "./carte/recherch-point-interet/recherch-point-interet.component";
 import {LocalisationComponent} from "./carte/localisation/localisation.component";
-
+import {CarouselModule} from 'primeng/carousel';
 
 
 const appRoutes: Routes = [
@@ -54,7 +54,8 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    CarouselModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [PointInteretService, HttpClient],

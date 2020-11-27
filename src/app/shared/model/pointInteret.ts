@@ -28,7 +28,7 @@ export class Geometrie{
     coordinates: LatLngTuple;
 }
 
-export enum CateroriesPointInteret{
+/*export enum CateroriesPointInteret{
 COMMERCES_CONSOMMATION = "Commerces, consommation",
 HOTELS="Hôtels et chambres d'hôtes",
 VIE_CITOYENNE="Administrations,vie citoyenne et vie pratique",
@@ -45,4 +45,15 @@ PETITE_ENFANCE="Petite Enfance",
 CULTES="Cultes",
 VIE_PRATIQUE="Vie pratique",
 ASSOCIATIONS="Associations"
+}*/
+
+export enum CateroriesPointInteret{
+  RESTAURATION = "Restauration",
+  HOTELS="Hôtels et chambres d'hôtes",
+  SANTE = "Santé",
+  TRANSPORTS = "Transports",
+  SPORTS="Sports",
+  EDUCATION="Education",
+  CULTES="Cultes",
+  COMMERCE="Commerce"
 }
