@@ -11,8 +11,9 @@ h1{
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 20px;
+  margin: 5px;
   height: 14cm;
+  width: 22cm;
 }
 .map-border{
   border: 5px solid darkred;
@@ -22,12 +23,19 @@ h1{
   height: 100%;
   background-position: center center;
 }
-.container{
-  margin: auto;
-  width: 30%;
-  border: 3px solid brown;
-  padding: 10px;
+
+.col3{
+  height: 19cm;
+  width: 22cm;
+  padding-left: 20px;
 }
+
+.col6{
+  height: 9.5cm;
+  width: 13cm;
+
+}
+
 
 
 
