@@ -10,7 +10,7 @@ describe('RecherchPointInteretComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RecherchPointInteretComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

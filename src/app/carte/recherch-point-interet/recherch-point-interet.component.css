@@ -1,14 +1,30 @@
 #html, #body {
-  height: 100%;
+    font-family: Roboto, Arial, sans-serif;
+    height: 100%;
+    margin: 0;
 }
-#map-container {
-  position: relative;
-  height: 1000px;
-  width:2100px;
+.map-wrapper{
+    top: 3cm;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    height: 20cm;
 }
-
-#map {
-  position: relative;
-  height: inherit;
-  width: inherit;
+.map-border{
+    border: 5px solid darkred;
+    height: 100%;
+}
+#map{
+    height: 100%;
+    background-position: center center;
+}
+.command {
+    padding: 4px 6px;
+    background: white;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    min-width: 200px;
 }
