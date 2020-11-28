@@ -18,6 +18,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RecherchPointInteretComponent} from "./carte/recherch-point-interet/recherch-point-interet.component";
 import {LocalisationComponent} from "./carte/localisation/localisation.component";
 import {CarouselModule} from 'primeng/carousel';
+import {OrderListModule} from 'primeng/orderlist';
 
 
 const appRoutes: Routes = [
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatInputModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    OrderListModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [PointInteretService, HttpClient],

@@ -22,16 +22,16 @@
   height: 100%;
   background-position: center center;
 }
-/*.carousel{
+.carousel{
   position: relative;
-  width:80%; max-width: 2000px;
-}*/
-/*p-carousel{
+  width:80%; max-width: 1000px;
+}
+p-carousel{
   border: 1px solid var(--surface-d);
   border-radius: 3px;
   margin: .3rem;
   text-align: center;
   padding: 2rem 0;
-}*/
+}
 
 

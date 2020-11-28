@@ -1,12 +1,13 @@
 import {LatLngTuple} from 'leaflet';
 
-export class PointInteret{
+/*export class PointInteret{
     datasetid: string;
     recordid: string;
     fields: Champs;
     geometry: Geometrie;
     record_timestamp: string;
 }
+
 
 export class Champs{
     ville : string;
@@ -26,37 +27,41 @@ export class Champs{
 export class Geometrie{
     type: string;
     coordinates: LatLngTuple;
+}*/
+
+export class PointInteret{
+   id:number;
+   name : string;
+   coordonnes:Coordonnees;
+   description:string;
+   itineraire:Itineraire;
+   adresse:Adresse;
+   categories:Categorie[];
 }
 
-/*export enum CateroriesPointInteret{
-COMMERCES_CONSOMMATION = "Commerces, consommation",
-HOTELS="Hôtels et chambres d'hôtes",
-VIE_CITOYENNE="Administrations,vie citoyenne et vie pratique",
-SENIORS="Seniors",
-LOISIRS="Culture et loisirs",
-CYBER_CITE = "Cyber cité",
-ENVIRONNEMENT = "Environnement, cadre de vie",
-ENTREPRISES_PLUS_50 = "Entreprises TIC + de 50 salariés",
-SANTE = "Santé",
-TRANSPORTS = "Transports",
-SPORTS="Sports",
-EDUCATION="Education",
-PETITE_ENFANCE="Petite Enfance",
-CULTES="Cultes",
-VIE_PRATIQUE="Vie pratique",
-ASSOCIATIONS="Associations"
-}*/
+export class Coordonnees{
+   id:number;
+   longitude:number;
+   latitude:number;
+   point:PointInteret;
+}
+export class Itineraire{
+   id:number;
+   name:string;
 
-/*export enum CateroriesPointInteret{
-  RESTAURATION = "Restauration",
-  HOTELS="Hôtels et chambres d'hôtes",
-  SANTE = "Santé",
-  TRANSPORTS = "Transports",
-  SPORTS="Sports",
-  EDUCATION="Education",
-  CULTES="Cultes",
-  COMMERCE="Commerce"
-}*/
+}
+export class Adresse{
+    name:string;
+    lines:string;
+    codePostal:string;
+    ville:string;
+    pays:string;
+}
+export class Categorie{
+    id:number;
+    point :PointInteret;
+    name:string;
+}
 
 
 export const Categories = {

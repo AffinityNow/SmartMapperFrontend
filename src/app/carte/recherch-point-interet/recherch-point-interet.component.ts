@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
 import * as L from 'leaflet';
 import {FormControl} from '@angular/forms';
-import {Categories, Champs, PointInteret} from '../../shared/model/pointInteret';
+import {Categories, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
+
 
 
 @Component({
@@ -19,6 +19,9 @@ export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
   map;
   marker;
   caterogies: any[];
+  isAvailable = false;
+  pointInteretCurrent: PointInteret[] = [];
+
 
   constructor(private pointInteretService: PointInteretService) {
   }
@@ -30,32 +33,20 @@ export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
       Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
-    /*    this.pointInteretList = Object.keys(CateroriesPointInteret).map(key => CateroriesPointInteret[key]);*/
-    const pointInteretObs = this.pointInteretService.chargerPointInteretJson();
-    const res: Subscription = pointInteretObs.subscribe(data => {
-        this.pointInteretData = data;
-        console.log(data);
-      }
-    );
   }
 
-  drawMarker(event) {
+/*  drawMarker(event) {
     const pointInteretSelectionnes = event.value;
     console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
     const pids = this.getPointInteret(pointInteretSelectionnes);
     console.log('positions : ' + pids);
     pids.forEach(pid =>
       L.marker(pid.wgs84).addTo(this.map).bindPopup(pid.description).openPopup());
-  }
+  }*/
 
-  private getPointInteret(categories: string[]): Champs[] {
-    const champs = [];
-    this.pointInteretData.forEach(pid => {
-      if (categories.includes(pid.fields.categorie1) || categories.includes(pid.fields.categorie2) || categories.includes(pid.fields.categorie3)) {
-        champs.push(pid.fields);
-      }
-    });
-    return champs;
+  getCurrentPointInteret(categorie:string):void{
+    this.isAvailable = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent=res);
   }
 
   private createMap(): void {

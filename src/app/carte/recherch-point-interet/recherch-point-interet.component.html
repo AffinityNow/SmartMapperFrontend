@@ -19,28 +19,24 @@
 </head>
 
 <body>
-<!--<p-carousel [value]="pointInteretList" [numVisible]="3" [numScroll]="3">
-  <ng-template let-pid pTemplate="item">
-    <span>pid</span>
-  </ng-template>
-</p-carousel>-->
 <div class="carousel">
 <p-carousel [value]="caterogies" [numVisible]="4" [numScroll]="4" [circular]="false">
-  <ng-template let-pid pTemplate="item">
-    <div> <span>{{pid.libelle}}</span></div>
-    <div> <img [src] = "pid.icon"/>
+  <ng-template let-caterorie pTemplate="item">
+    <div> <span>{{caterorie.libelle}}</span></div>
+    <div> <img [src] = "caterorie.icon" (click)="getCurrentPointInteret(caterorie.libelle)"/>
     </div>
   </ng-template>
 </p-carousel>
 </div>
-<mat-form-field appearance="fill">
-    <mat-label>Points d'intérêt</mat-label>
-<!--  <i class="material-icons">face</i>-->
-    <mat-select [formControl]="pointInteretCtrl" multiple [(value)]="pointInteretSelectionnes" (selectionChange)="drawMarker($event)">
-        <mat-option *ngFor="let pi of pointInteretList" [value]="pi">{{pi}}</mat-option>
-    </mat-select>
-</mat-form-field>
-{{pointInteretSelectionnes}}
+<p-orderList [value]="pointInteretCurrent">
+  <ng-template let-pid pTemplate="item">
+    <div>
+      <div>{{pid.adresse.name}} - {{pid.adresse.lines}}</div>
+    </div>
+  </ng-template>
+</p-orderList>
+
+
 <div class="map-wrapper">
     <div class="map-border">
         <div id="map"></div>

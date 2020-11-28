@@ -10,7 +10,8 @@ export class PointInteretService{
 
   constructor(private httpClient : HttpClient) { }
 
-  chargerPointInteretJson():Observable<PointInteret[]>{
-    return this.httpClient.get<PointInteret[]>("assets/maps/leaflet-control/geojson-data.json")
+  public loadPointInteretByCategorie(categorie:string): Observable<PointInteret[]>{
+   return this.httpClient.get<PointInteret[]>("http://localhost:8080/point-interet/categorie/"+categorie) ;
   }
+
 }
