@@ -47,7 +47,7 @@ VIE_PRATIQUE="Vie pratique",
 ASSOCIATIONS="Associations"
 }*/
 
-export enum CateroriesPointInteret{
+/*export enum CateroriesPointInteret{
   RESTAURATION = "Restauration",
   HOTELS="Hôtels et chambres d'hôtes",
   SANTE = "Santé",
@@ -56,4 +56,18 @@ export enum CateroriesPointInteret{
   EDUCATION="Education",
   CULTES="Cultes",
   COMMERCE="Commerce"
-}
+}*/
+
+
+export const Categories = {
+  RESTAURATION: { libelle: 'Restauration', icon: "../assets/icons/restaurant.png"},
+  HOTELS: { libelle: 'Hôtels et chambres d\'hôtes', icon: "../assets/icons/hotel.png"},
+  SANTE: { libelle: 'Santé', icon: "../assets/icons/health.png"},
+  TRANSPORTS: { libelle: 'Transports', icon: "../assets/icons/transportation.png"},
+  SPORTS: { libelle: 'Sports', icon: "../assets/icons/sports.png"},
+  EDUCATION: { libelle: 'Education', icon: "../assets/icons/school.png"},
+  CULTES: { libelle: 'Cultes', icon: "../assets/icons/foundation.png"},
+  COMMERCE: { libelle: 'Commerce', icon: "../assets/icons/shopping.png"},
+} as const
+
+export type Categories = keyof typeof Categories

@@ -41,6 +41,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
+    LocalisationComponent,
     RecherchPointInteretComponent
   ],
   imports: [

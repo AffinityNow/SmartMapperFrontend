@@ -2,9 +2,8 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import * as L from 'leaflet';
 import {FormControl} from '@angular/forms';
-import {CateroriesPointInteret, Champs, PointInteret} from '../../shared/model/pointInteret';
+import {Categories, Champs, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
-
 
 
 @Component({
@@ -19,6 +18,7 @@ export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
   pointInteretData: PointInteret[];
   map;
   marker;
+  caterogies: any[];
 
   constructor(private pointInteretService: PointInteretService) {
   }
@@ -28,7 +28,9 @@ export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.pointInteretList = Object.keys(CateroriesPointInteret).map(key => CateroriesPointInteret[key]);
+    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
+      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
+    /*    this.pointInteretList = Object.keys(CateroriesPointInteret).map(key => CateroriesPointInteret[key]);*/
     const pointInteretObs = this.pointInteretService.chargerPointInteretJson();
     const res: Subscription = pointInteretObs.subscribe(data => {
         this.pointInteretData = data;
