@@ -1,9 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
-import {FormControl} from '@angular/forms';
 import {Categories, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
-
 
 
 @Component({
@@ -12,14 +10,12 @@ import {PointInteretService} from '../../shared/service/point-interet.service';
   styleUrls: ['./recherch-point-interet.component.css']
 })
 export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
-  pointInteretCtrl = new FormControl();
   pointInteretList: string[];
   pointInteretSelectionnes: string[];
-  pointInteretData: PointInteret[];
   map;
   marker;
   caterogies: any[];
-  isAvailable = false;
+  displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
 
 
@@ -35,18 +31,18 @@ export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
       Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
   }
 
-/*  drawMarker(event) {
-    const pointInteretSelectionnes = event.value;
-    console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
-    const pids = this.getPointInteret(pointInteretSelectionnes);
-    console.log('positions : ' + pids);
-    pids.forEach(pid =>
-      L.marker(pid.wgs84).addTo(this.map).bindPopup(pid.description).openPopup());
-  }*/
+  /*  drawMarker(event) {
+      const pointInteretSelectionnes = event.value;
+      console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
+      const pids = this.getPointInteret(pointInteretSelectionnes);
+      console.log('positions : ' + pids);
+      pids.forEach(pid =>
+        L.marker(pid.wgs84).addTo(this.map).bindPopup(pid.description).openPopup());
+    }*/
 
-  getCurrentPointInteret(categorie:string):void{
-    this.isAvailable = true;
-    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent=res);
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
   }
 
   private createMap(): void {

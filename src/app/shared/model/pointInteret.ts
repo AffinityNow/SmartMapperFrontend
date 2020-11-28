@@ -1,34 +1,3 @@
-import {LatLngTuple} from 'leaflet';
-
-/*export class PointInteret{
-    datasetid: string;
-    recordid: string;
-    fields: Champs;
-    geometry: Geometrie;
-    record_timestamp: string;
-}
-
-
-export class Champs{
-    ville : string;
-    wgs84 : LatLngTuple;
-    description : string;
-    adresse : string;
-    telephone: string;
-    longitude: number;
-    codepostal: number;
-    latitude: number;
-    titre: string;
-    categorie1: string;
-    categorie3: string;
-    categorie2: string;
-}
-
-export class Geometrie{
-    type: string;
-    coordinates: LatLngTuple;
-}*/
-
 export class PointInteret{
    id:number;
    name : string;

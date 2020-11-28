@@ -28,7 +28,7 @@
   </ng-template>
 </p-carousel>
 </div>
-<p-orderList [value]="pointInteretCurrent">
+<p-orderList *ngIf="displayAddressList" [value]="pointInteretCurrent">
   <ng-template let-pid pTemplate="item">
     <div>
       <div>{{pid.adresse.name}} - {{pid.adresse.lines}}</div>
