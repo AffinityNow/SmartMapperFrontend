@@ -32,7 +32,6 @@ export class Categorie{
     name:string;
 }
 
-
 export const Categories = {
   RESTAURATION: { libelle: 'Restauration', icon: "../assets/icons/restaurant.png"},
   HOTELS: { libelle: 'Hôtels et chambres d\'hôtes', icon: "../assets/icons/hotel.png"},
