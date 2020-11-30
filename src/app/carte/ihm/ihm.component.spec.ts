@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IHMComponent } from './ihm.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
+
 describe('IHMComponent', () => {
   let component: IHMComponent;
   let fixture: ComponentFixture<IHMComponent>;
@@ -12,7 +13,7 @@ describe('IHMComponent', () => {
       imports: [HttpClientTestingModule],
       declarations: [ IHMComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
