@@ -203,7 +203,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
       const baseMaps = {carte1, carte2, carte3};
       const overlayMaps = {cities, monument};
       const Geomarker = L.marker([coords.latitude, coords.longitude], {icon: this.GeollocIcon}).addTo(this.carte);
-      Geomarker.bindPopup('<b>Ici</b>').openPopup();
+      Geomarker.bindPopup('<b>Vous êtes ici</b>').openPopup();
       // faire pour les images
       const controller = L.control.layers(baseMaps, overlayMaps).addTo(this.carte).setPosition('bottomleft');
       scale().addTo(this.carte);
