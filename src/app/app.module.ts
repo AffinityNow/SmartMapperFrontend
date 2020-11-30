@@ -19,6 +19,7 @@ import {RecherchPointInteretComponent} from "./carte/recherch-point-interet/rech
 import {LocalisationComponent} from "./carte/localisation/localisation.component";
 import {CarouselModule} from 'primeng/carousel';
 import {OrderListModule} from 'primeng/orderlist';
+import {IHMComponent} from "./carte/ihm/ihm.component";
 
 
 const appRoutes: Routes = [
@@ -34,6 +35,12 @@ const appRoutes: Routes = [
     path: 'recherchePOI',
     component: RecherchPointInteretComponent
   }
+  ,
+  {
+    path: 'IHM',
+    component: IHMComponent
+  }
+
 ];
 
 @NgModule({
@@ -43,7 +50,8 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     LocalisationComponent,
-    RecherchPointInteretComponent
+    RecherchPointInteretComponent,
+    IHMComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,7 @@ const appRoutes: Routes = [
     MatInputModule,
     HttpClientModule,
     CarouselModule,
-    OrderListModule
+    OrderListModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [PointInteretService, HttpClient],
