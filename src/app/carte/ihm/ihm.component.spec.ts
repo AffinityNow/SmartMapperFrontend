@@ -1,22 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RecherchPointInteretComponent } from './recherch-point-interet.component';
+import { IHMComponent } from './ihm.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
-describe('RecherchPointInteretComponent', () => {
-  let component: RecherchPointInteretComponent;
-  let fixture: ComponentFixture<RecherchPointInteretComponent>;
+
+describe('IHMComponent', () => {
+  let component: IHMComponent;
+  let fixture: ComponentFixture<IHMComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [ RecherchPointInteretComponent ]
+      declarations: [ IHMComponent ]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RecherchPointInteretComponent);
+    fixture = TestBed.createComponent(IHMComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

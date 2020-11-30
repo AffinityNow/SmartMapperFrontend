@@ -11,24 +11,28 @@ h1{
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 20px;
+  margin: 10px;
   height: 14cm;
+
 }
 .map-border{
-  border: 5px solid darkred;
+  border: 2px solid darkred;
   height: 100%;
 }
+
 #map{
-  height: 100%;
-  background-position: center center;
+  height : 100%;
+  width : 100%;
 }
-.container{
-  margin: auto;
-  width: 30%;
-  border: 3px solid brown;
-  padding: 10px;
-}
+
 
 .leaflet-control-container .leaflet-routing-container-hide {
   display: none;
+}
+p-carousel{
+  border: 1px solid var(--surface-d);
+  border-radius: 3px;
+  margin: .3rem;
+  text-align: center;
+  padding: 2rem 0;
 }

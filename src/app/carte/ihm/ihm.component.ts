@@ -1,25 +1,29 @@
+import {Categories, PointInteret} from '../../shared/model/pointInteret';
+import {PointInteretService} from '../../shared/service/point-interet.service';
+
+// Erwyn
+
 import {Component, AfterViewInit, OnInit} from '@angular/core';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
-import {FormControl, NgModel} from '@angular/forms';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
 import scale = control.scale;
 import 'leaflet-easybutton';
 import 'leaflet-easybutton/src/easy-button.css';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppComponent} from '../../app.component';
-import {BrowserModule} from '@angular/platform-browser';
-import zoom = control.zoom;
+import 'leaflet-routing-machine';
+
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
+// @ts-ignore
+import Leaflet from 'leaflet';
+import {FormControl} from "@angular/forms";
 import 'leaflet-routing-machine';
 import layers = control.layers;
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import * as ELG from 'esri-leaflet-geocoder';
-// @ts-ignore
-import Leaflet from 'leaflet';
-import retina = Browser.retina;
-// import any = jasmine.any;
+import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+
 
 delete Leaflet.Icon.Default.prototype._getIconUrl;
 
@@ -30,27 +34,39 @@ L.Icon.Default.mergeOptions({
 });
 
 @Component({
-  selector: 'app-localisation',
-  templateUrl: './localisation.component.html',
-  styleUrls: ['./localisation.component.css']
+  selector: 'app-ihm',
+  templateUrl: './ihm.component.html',
+  styleUrls: ['./ihm.component.css']
 })
+export class IHMComponent implements OnInit, AfterViewInit {
 
-export class LocalisationComponent implements AfterViewInit, OnInit {
+  pointInteretList: string[];
+  pointInteretSelectionnes: string[];
+  map;
+  marker;
+  caterogies: any[];
+  displayAddressList = false;
+  pointInteretCurrent: PointInteret[] = [];
+
+
+  //Erwyn
   searchField: FormControl;
   searches: string[] = [];
   carte;
-  marker;
+  marker_bis;
   /* https://www.zupimages.net/*/
   smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25], });
   ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25], });
   GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25], });
 
-  constructor() {
+  constructor(private pointInteretService: PointInteretService) {
   }
 
   ngAfterViewInit(): void {
-    this.createMap();
-  }
+    this.createMap()
+    }
+
+    //Erwyn
 
   // tslint:disable-next-line:typedef
   createMap() {
@@ -168,26 +184,26 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
 
       document.getElementById('radius').addEventListener('input', changeRadius);
       function changeRadius(event) {
-         const newRadius = event.target.value;
+        const newRadius = event.target.value;
         // tslint:disable-next-line:only-arrow-functions
-         group.eachLayer(function(layer) {
+        group.eachLayer(function(layer) {
           if (layer instanceof L.Circle) {
             layer.setRadius(newRadius); // obtenir le rayon
           }
         });
-       }
+      }
       const circle = L.circle(test1, {
         radius: 1000,
       }).addTo(group);
 
       // tslint:disable-next-line:no-shadowed-variable
       const marker = L.marker(test1).addTo(group);
-       // https://www.liedman.net/leaflet-routing-machine/api/
+      // https://www.liedman.net/leaflet-routing-machine/api/
       // calcule la distance entre 2 marker
       const baseMaps = {carte1, carte2, carte3};
       const overlayMaps = {cities, monument};
       const Geomarker = L.marker([coords.latitude, coords.longitude], {icon: this.GeollocIcon}).addTo(this.carte);
-      Geomarker.bindPopup('<b>Ici</b>').openPopup();
+      Geomarker.bindPopup('<b>Vous êtes ici</b>').openPopup();
       // faire pour les images
       const controller = L.control.layers(baseMaps, overlayMaps).addTo(this.carte).setPosition('bottomleft');
       scale().addTo(this.carte);
@@ -218,8 +234,11 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
     );
   }
 
-  // tslint:disable-next-line:typedef
-  ngOnInit() {
+  ngOnInit(): void {
+    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
+      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
+
+    //Erwyn
     this.searchField = new FormControl();
     this.searchField.valueChanges
       .pipe(
@@ -230,4 +249,10 @@ export class LocalisationComponent implements AfterViewInit, OnInit {
         this.searches.push(term);
       });
   }
+
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
+  }
+
 }
