@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecherchPointInteretComponent } from './recherch-point-interet.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
-
 describe('RecherchPointInteretComponent', () => {
   let component: RecherchPointInteretComponent;
   let fixture: ComponentFixture<RecherchPointInteretComponent>;
