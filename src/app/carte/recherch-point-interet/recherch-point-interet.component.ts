@@ -1,108 +1,68 @@
-import {AfterViewInit, Component} from '@angular/core';
-import 'leaflet/dist/leaflet.css';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
-import * as ELG from 'esri-leaflet-geocoder';
-// @ts-ignore
-import Leaflet from 'leaflet';
+import {Categories, PointInteret} from '../../shared/model/pointInteret';
+import {PointInteretService} from '../../shared/service/point-interet.service';
 
-delete Leaflet.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png'
-});
 
 @Component({
   selector: 'app-recherch-point-interet',
   templateUrl: './recherch-point-interet.component.html',
   styleUrls: ['./recherch-point-interet.component.css']
 })
-export class RecherchPointInteretComponent implements AfterViewInit {
+export class RecherchPointInteretComponent implements OnInit, AfterViewInit {
+  pointInteretList: string[];
+  pointInteretSelectionnes: string[];
+  map;
   marker;
+  caterogies: any[];
+  displayAddressList = false;
+  pointInteretCurrent: PointInteret[] = [];
+
+
+  constructor(private pointInteretService: PointInteretService) {
+  }
 
   ngAfterViewInit(): void {
     this.createMap();
   }
 
+  ngOnInit(): void {
+    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
+      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
+  }
+
+  /*  drawMarker(event) {
+      const pointInteretSelectionnes = event.value;
+      console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
+      const pids = this.getPointInteret(pointInteretSelectionnes);
+      console.log('positions : ' + pids);
+      pids.forEach(pid =>
+        L.marker(pid.wgs84).addTo(this.map).bindPopup(pid.description).openPopup());
+    }*/
+
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
+  }
+
   private createMap(): void {
-    const coordsParis = {lat: 48.8534, lng: 2.3488};
-    const coordsFromBrowser = {lat: coordsParis.lat, lng: coordsParis.lng};
-    const map = L.map('map').setView(
+    const coordsIssy = {lat: 48.8245306, lng: 2.2743419};
+    const coordsFromBrowser = {lat: coordsIssy.lat, lng: coordsIssy.lng};
+    this.map = L.map('map').setView(
       [coordsFromBrowser.lat, coordsFromBrowser.lng],
-      10
+      15
     );
-    const searchControl = ELG.geosearch().addTo(map);
-    const results = L.layerGroup().addTo(map);
-    let markers = [];
-
-    searchControl.on('results', (data) => {
-      markers = [];
-      console.log('data', data);
-      results.clearLayers();
-      // several results as several towns with same name (like)
-      for (let i = data.results.length - 1; i >= 0; i--) {
-        const result = data.results[i];
-        const marker = L.marker(result.latlng);
-        markers = [...markers];
-        results.addLayer(marker);
-        marker.on('mouseover', addRadius);
-        console.log(new ELG.ReverseGeocode());
-        marker.on('click', <LeafletMouseEvent>(e) => {
-          new ELG.ReverseGeocode().latlng(e.latlng).run((error, res) => {
-            if (error) {
-              return;
-            }
-            if (this.marker && map.hasLayer(this.marker)) {
-              map.removeLayer(this.marker);
-            }
-
-            this.marker = L.marker(result.latlng)
-              .addTo(map)
-              .bindPopup(res.address.Match_addr)
-              .openPopup();
-          });
-        });
-        console.log('markers', markers);
-      }
-    });
-
-    function addRadius(marker, radius = 1000): any {
-      console.log('marker clicked', marker);
-      const circle = L.circle([marker.latlng.lat, marker.latlng.lng], {
-        radius,
-      });
-      console.log('circle', circle);
-      circle.addTo(map);
-      setTimeout(() => {
-        map.setZoom(15);
-      }, 1000);
-    }
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; ' +
+        '<a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © ' +
+        '<a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
+      id: 'mapbox/streets-v11',
       tileSize: 512,
       zoomOffset: -1,
-    }).addTo(map);
+      accessToken: 'pk.eyJ1Ijoic21hcnRtYXBwZXIiLCJhIjoiY2toZzl5cGxiMGdmNzJzcXFnbnVycjZnaSJ9.7wSZ8VjvXKBdMBwmfEYMeA'
+    }).addTo(this.map);
   }
+
 }
-
-/*
-    navigator.geolocation.getCurrentPosition((location) => {
-      const latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-      const mymap = L.map('map').setView(latlng, 13);
-      L.tileLayer('', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,' +
-          ' <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-
-      }).addTo(mymap);
-
-      const marker = L.marker(latlng).addTo(mymap);
-    });
- */
