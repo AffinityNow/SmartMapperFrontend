@@ -61,7 +61,6 @@ export class IHMComponent implements OnInit, AfterViewInit {
   caterogies: any[];
   displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
-  map;
   marker;
 
   constructor(private pointInteretService: PointInteretService) {
@@ -78,7 +77,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     const pids = pointInteretSelectionnes
     console.log('positions : ' + pids);
     pids.forEach(pid =>
-      L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.map).bindPopup(pid.description).openPopup());
+      L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
   }
 
   ngAfterViewInit(): void {
@@ -113,7 +112,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     const fleuriste = L.marker([48.9, 2.23], {icon: this.smallIcon}).bindPopup('mon fleuristeUn fleuriste est un artisan spécialisé dans la vente de fleurs et la confection de bouquets de fleurs et d\'assemblages appelés « compositions » de courbevoie ');
     const eglise = L.marker([48.852968, 2.349902], {icon: this.ImageIcon}).bindPopup('<p>La cathédrale Notre-Dame de Paris, communément appelée Notre-Dame, est l\'un des monuments les plus emblématiques de Paris et de la France. Elle est située sur l\'île de la Cité et est un lieu de culte catholique, siège de l\'archidiocèse de Paris, dédiée à la Vierge Marie</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>');
     const louvre = L.marker([48.8592, 2.3417], {icon: this.smallIcon}).bindPopup('Le louvre Leonardo da vinci');
-// ajout dans les layers
+    // ajout dans les layers
     const cities = L.layerGroup([nanterre, poissy, elysee, casino, fleuriste, louvre]);
     const monument = L.layerGroup([eglise]);
     if (!navigator.geolocation) {
