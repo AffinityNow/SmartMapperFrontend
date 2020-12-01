@@ -2,17 +2,9 @@
 import {Categories, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
 import {Component, AfterViewInit, OnInit} from '@angular/core';
+import * as L from 'leaflet';
 
 // Erwyn
-import 'leaflet/dist/leaflet.css';
-import * as L from 'leaflet';
-import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
-import scale = control.scale;
-import 'leaflet-easybutton';
-import 'leaflet-easybutton/src/easy-button.css';
-import 'leaflet-routing-machine';
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 // @ts-ignore
 import Leaflet from 'leaflet';
 import {FormControl} from "@angular/forms";
@@ -21,6 +13,14 @@ import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import * as ELG from 'esri-leaflet-geocoder';
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import 'leaflet/dist/leaflet.css';
+import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
+import scale = control.scale;
+import 'leaflet-easybutton';
+import 'leaflet-easybutton/src/easy-button.css';
+import 'leaflet-routing-machine';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 
 // Ahlem
 let greenIcon = new L.Icon({
@@ -58,11 +58,11 @@ export class IHMComponent implements OnInit, AfterViewInit {
 //*******************Ahlem*****************************************
   pointInteretList: string[];
   pointInteretSelectionnes: string[];
-  map;
-  marker;
   caterogies: any[];
   displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
+  map;
+  marker;
 
   constructor(private pointInteretService: PointInteretService) {
   }
