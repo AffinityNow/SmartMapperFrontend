@@ -1,9 +1,9 @@
+// Ahlem
 import {Categories, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
+import {Component, AfterViewInit, OnInit} from '@angular/core';
 
 // Erwyn
-
-import {Component, AfterViewInit, OnInit} from '@angular/core';
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
@@ -11,22 +11,29 @@ import scale = control.scale;
 import 'leaflet-easybutton';
 import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-routing-machine';
-
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 // @ts-ignore
 import Leaflet from 'leaflet';
 import {FormControl} from "@angular/forms";
 import 'leaflet-routing-machine';
-import layers = control.layers;
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import * as ELG from 'esri-leaflet-geocoder';
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
+// Ahlem
+let greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
+//Erwyn
 delete Leaflet.Icon.Default.prototype._getIconUrl;
-
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
@@ -39,7 +46,16 @@ L.Icon.Default.mergeOptions({
   styleUrls: ['./ihm.component.css']
 })
 export class IHMComponent implements OnInit, AfterViewInit {
+  //Erwyn
+  searchField: FormControl;
+  searches: string[] = [];
+  carte;
+  /* https://www.zupimages.net/*/
+  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25],});
+  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25],});
+  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25],});
 
+//*******************Ahlem*****************************************
   pointInteretList: string[];
   pointInteretSelectionnes: string[];
   map;
@@ -48,25 +64,43 @@ export class IHMComponent implements OnInit, AfterViewInit {
   displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
 
-
-  //Erwyn
-  searchField: FormControl;
-  searches: string[] = [];
-  carte;
-  marker_bis;
-  /* https://www.zupimages.net/*/
-  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25], });
-  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25], });
-  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25], });
-
   constructor(private pointInteretService: PointInteretService) {
+  }
+
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
+  }
+
+  drawMarker(event) {
+    const pointInteretSelectionnes = event.value;
+    console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
+    const pids = pointInteretSelectionnes
+    console.log('positions : ' + pids);
+    pids.forEach(pid =>
+      L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.map).bindPopup(pid.description).openPopup());
   }
 
   ngAfterViewInit(): void {
     this.createMap()
-    }
+  }
 
-    //Erwyn
+  ngOnInit(): void {
+    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
+      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
+//*****************************************************************
+
+//Erwyn
+    this.searchField = new FormControl();
+    this.searchField.valueChanges
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(term => {
+        this.searches.push(term);
+      });
+  }
 
   // tslint:disable-next-line:typedef
   createMap() {
@@ -183,15 +217,17 @@ export class IHMComponent implements OnInit, AfterViewInit {
       const group = L.layerGroup().addTo(this.carte);
 
       document.getElementById('radius').addEventListener('input', changeRadius);
+
       function changeRadius(event) {
         const newRadius = event.target.value;
         // tslint:disable-next-line:only-arrow-functions
-        group.eachLayer(function(layer) {
+        group.eachLayer(function (layer) {
           if (layer instanceof L.Circle) {
             layer.setRadius(newRadius); // obtenir le rayon
           }
         });
       }
+
       const circle = L.circle(test1, {
         radius: 1000,
       }).addTo(group);
@@ -210,6 +246,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     });
     this.watchPosition();
   }
+
   // tslint:disable-next-line:typedef
   watchPosition() {
     const desLat = 0;
@@ -234,25 +271,5 @@ export class IHMComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngOnInit(): void {
-    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
-      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
-
-    //Erwyn
-    this.searchField = new FormControl();
-    this.searchField.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged()
-      )
-      .subscribe(term => {
-        this.searches.push(term);
-      });
-  }
-
-  getCurrentPointInteret(categorie: string): void {
-    this.displayAddressList = true;
-    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
-  }
 
 }
