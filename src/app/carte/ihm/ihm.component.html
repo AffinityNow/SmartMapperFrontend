@@ -101,19 +101,20 @@
 <div class="carousel">
   <p-carousel [value]="caterogies" [numVisible]="4" [numScroll]="4" [circular]="false">
     <ng-template let-caterorie pTemplate="item">
-      <div> <span>{{caterorie.libelle}}</span></div>
-      <div> <img [src] = "caterorie.icon" (click)="getCurrentPointInteret(caterorie.libelle)"/>
+      <div><span>{{caterorie.libelle}}</span></div>
+      <div><img [src]="caterorie.icon" (click)="getCurrentPointInteret(caterorie.libelle)"/>
       </div>
     </ng-template>
   </p-carousel>
 </div>
-<p-orderList *ngIf="displayAddressList" [value]="pointInteretCurrent">
-  <ng-template let-pid pTemplate="item">
-    <div>
-      <div>{{pid.adresse.name}} - {{pid.adresse.lines}}</div>
-    </div>
-  </ng-template>
-</p-orderList>
+  <p-orderList *ngIf="displayAddressList" [value]="pointInteretCurrent" (onSelectionChange)="drawMarker($event)">
+    <mat-option *ngFor="let pi of pointInteretCurrent" [value]="pi">{{pi}}</mat-option>
+    <ng-template let-pid pTemplate="item">
+      <div>
+        <div>{{pid.adresse.name}} - {{pid.adresse.lines}}</div>
+      </div>
+    </ng-template>
+  </p-orderList>
 </div>
 </body>
 

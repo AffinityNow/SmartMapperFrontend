@@ -1,32 +1,39 @@
+// Ahlem
 import {Categories, PointInteret} from '../../shared/model/pointInteret';
 import {PointInteretService} from '../../shared/service/point-interet.service';
+import {Component, AfterViewInit, OnInit} from '@angular/core';
+import * as L from 'leaflet';
 
 // Erwyn
-
-import {Component, AfterViewInit, OnInit} from '@angular/core';
+// @ts-ignore
+import Leaflet from 'leaflet';
+import {FormControl} from "@angular/forms";
+import 'leaflet-routing-machine';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
+import * as ELG from 'esri-leaflet-geocoder';
+import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 import 'leaflet/dist/leaflet.css';
-import * as L from 'leaflet';
 import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
 import scale = control.scale;
 import 'leaflet-easybutton';
 import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-routing-machine';
-
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
-// @ts-ignore
-import Leaflet from 'leaflet';
-import {FormControl} from "@angular/forms";
-import 'leaflet-routing-machine';
-import layers = control.layers;
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
-import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
-import * as ELG from 'esri-leaflet-geocoder';
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
+// Ahlem
+let greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
 
+//Erwyn
 delete Leaflet.Icon.Default.prototype._getIconUrl;
-
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon.png',
@@ -39,34 +46,60 @@ L.Icon.Default.mergeOptions({
   styleUrls: ['./ihm.component.css']
 })
 export class IHMComponent implements OnInit, AfterViewInit {
-
-  pointInteretList: string[];
-  pointInteretSelectionnes: string[];
-  map;
-  marker;
-  caterogies: any[];
-  displayAddressList = false;
-  pointInteretCurrent: PointInteret[] = [];
-
-
   //Erwyn
   searchField: FormControl;
   searches: string[] = [];
   carte;
-  marker_bis;
   /* https://www.zupimages.net/*/
-  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25], });
-  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25], });
-  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25], });
+  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25],});
+  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25],});
+  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25],});
+
+//*******************Ahlem*****************************************
+  pointInteretList: string[];
+  pointInteretSelectionnes: string[];
+  caterogies: any[];
+  displayAddressList = false;
+  pointInteretCurrent: PointInteret[] = [];
+  marker;
 
   constructor(private pointInteretService: PointInteretService) {
   }
 
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
+  }
+
+  drawMarker(event) {
+    const pointInteretSelectionnes = event.value;
+    console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
+    const pids = pointInteretSelectionnes
+    console.log('positions : ' + pids);
+    pids.forEach(pid =>
+      L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
+  }
+
   ngAfterViewInit(): void {
     this.createMap()
-    }
+  }
 
-    //Erwyn
+  ngOnInit(): void {
+    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
+      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
+//*****************************************************************
+
+//Erwyn
+    this.searchField = new FormControl();
+    this.searchField.valueChanges
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe(term => {
+        this.searches.push(term);
+      });
+  }
 
   // tslint:disable-next-line:typedef
   createMap() {
@@ -79,7 +112,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     const fleuriste = L.marker([48.9, 2.23], {icon: this.smallIcon}).bindPopup('mon fleuristeUn fleuriste est un artisan spécialisé dans la vente de fleurs et la confection de bouquets de fleurs et d\'assemblages appelés « compositions » de courbevoie ');
     const eglise = L.marker([48.852968, 2.349902], {icon: this.ImageIcon}).bindPopup('<p>La cathédrale Notre-Dame de Paris, communément appelée Notre-Dame, est l\'un des monuments les plus emblématiques de Paris et de la France. Elle est située sur l\'île de la Cité et est un lieu de culte catholique, siège de l\'archidiocèse de Paris, dédiée à la Vierge Marie</p> <img src=\'https://www.zupimages.net/up/20/45/1c0u.jpg\'>');
     const louvre = L.marker([48.8592, 2.3417], {icon: this.smallIcon}).bindPopup('Le louvre Leonardo da vinci');
-// ajout dans les layers
+    // ajout dans les layers
     const cities = L.layerGroup([nanterre, poissy, elysee, casino, fleuriste, louvre]);
     const monument = L.layerGroup([eglise]);
     if (!navigator.geolocation) {
@@ -183,15 +216,17 @@ export class IHMComponent implements OnInit, AfterViewInit {
       const group = L.layerGroup().addTo(this.carte);
 
       document.getElementById('radius').addEventListener('input', changeRadius);
+
       function changeRadius(event) {
         const newRadius = event.target.value;
         // tslint:disable-next-line:only-arrow-functions
-        group.eachLayer(function(layer) {
+        group.eachLayer(function (layer) {
           if (layer instanceof L.Circle) {
             layer.setRadius(newRadius); // obtenir le rayon
           }
         });
       }
+
       const circle = L.circle(test1, {
         radius: 1000,
       }).addTo(group);
@@ -210,6 +245,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     });
     this.watchPosition();
   }
+
   // tslint:disable-next-line:typedef
   watchPosition() {
     const desLat = 0;
@@ -234,25 +270,5 @@ export class IHMComponent implements OnInit, AfterViewInit {
     );
   }
 
-  ngOnInit(): void {
-    this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
-      Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
-
-    //Erwyn
-    this.searchField = new FormControl();
-    this.searchField.valueChanges
-      .pipe(
-        debounceTime(1000),
-        distinctUntilChanged()
-      )
-      .subscribe(term => {
-        this.searches.push(term);
-      });
-  }
-
-  getCurrentPointInteret(categorie: string): void {
-    this.displayAddressList = true;
-    this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
-  }
 
 }
