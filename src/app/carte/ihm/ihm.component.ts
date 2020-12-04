@@ -7,12 +7,12 @@ import * as L from 'leaflet';
 // Erwyn
 // @ts-ignore
 import Leaflet from 'leaflet';
-import {FormControl} from "@angular/forms";
+import {FormControl} from '@angular/forms';
 import 'leaflet-routing-machine';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import * as ELG from 'esri-leaflet-geocoder';
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import 'leaflet/dist/leaflet.css';
 import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
 import scale = control.scale;
@@ -21,9 +21,17 @@ import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-routing-machine';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
+import 'leaflet-routing-machine';
+import 'leaflet-control-geocoder';
+import layers = control.layers;
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import 'leaflet-routing-machine';
+import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 
 // Ahlem
-let greenIcon = new L.Icon({
+const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [25, 41],
@@ -32,7 +40,7 @@ let greenIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-//Erwyn
+// Erwyn
 delete Leaflet.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-icon-2x.png',
@@ -46,16 +54,16 @@ L.Icon.Default.mergeOptions({
   styleUrls: ['./ihm.component.css']
 })
 export class IHMComponent implements OnInit, AfterViewInit {
-  //Erwyn
+  // Erwyn
   searchField: FormControl;
   searches: string[] = [];
   carte;
   /* https://www.zupimages.net/*/
-  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25],});
-  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25],});
-  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25],});
+  smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25], });
+  ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25], });
+  GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25], });
 
-//*******************Ahlem*****************************************
+// *******************Ahlem*****************************************
   pointInteretList: string[];
   pointInteretSelectionnes: string[];
   caterogies: any[];
@@ -74,22 +82,21 @@ export class IHMComponent implements OnInit, AfterViewInit {
   drawMarker(event) {
     const pointInteretSelectionnes = event.value;
     console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
-    const pids = pointInteretSelectionnes
+    const pids = pointInteretSelectionnes;
     console.log('positions : ' + pids);
-    pids.forEach(pid =>
-      L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
+    pids.forEach(pid => L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
   }
 
   ngAfterViewInit(): void {
-    this.createMap()
+    this.createMap();
   }
 
   ngOnInit(): void {
     this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
       Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
-//*****************************************************************
+// *****************************************************************
 
-//Erwyn
+// Erwyn
     this.searchField = new FormControl();
     this.searchField.valueChanges
       .pipe(
@@ -166,6 +173,9 @@ export class IHMComponent implements OnInit, AfterViewInit {
             // geocoder: L.Control.Geocoder.nominatim({})
             // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
           }).addTo(this.carte);
+          /*if(itineraire1.){
+            circle.setStyle({color: 'green'});
+          }*/
           // const gph = L.geographPhotos({api_key: '47c9baf779', autoZoomOnAdd: true, query: 'canal'}).addTo(this.carte);
           // itineraire1.hide().addTo(this.carte);
           // this.carte.removeControl(itineraire1);
@@ -191,6 +201,18 @@ export class IHMComponent implements OnInit, AfterViewInit {
           console.log('markers', markers);
         }
       });
+      const itineraire2 = L.Routing.control({
+        waypoints: [
+          L.latLng([coords.latitude, coords.longitude])
+        ],
+        useZoomParameter: false,
+        autoRoute: true,
+        routeWhileDragging: true,
+        fitSelectedRoutes: true,
+        router: L.Routing.osrmv1({serviceUrl: 'http://router.project-osrm.org/route/v1'}),
+        geocoder: L.Control.Geocoder.nominatim({})
+        // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
+      }).addTo(this.carte);
       // c'est les maps caret 1-3
       const carte1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         minZoom: 3,
@@ -220,7 +242,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
       function changeRadius(event) {
         const newRadius = event.target.value;
         // tslint:disable-next-line:only-arrow-functions
-        group.eachLayer(function (layer) {
+        group.eachLayer(function(layer) {
           if (layer instanceof L.Circle) {
             layer.setRadius(newRadius); // obtenir le rayon
           }
