@@ -213,6 +213,13 @@ export class IHMComponent implements OnInit, AfterViewInit {
         geocoder: L.Control.Geocoder.nominatim({})
         // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
       }).addTo(this.carte);
+      itineraire2.on('routesfound', function(e) {
+        const routes = e.routes;
+        const summary = routes[0].summary;
+        if (summary.totalDistance > 1000){
+          circle.setStyle({color: 'red'});
+        }
+      });
       // c'est les maps caret 1-3
       const carte1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         minZoom: 3,
