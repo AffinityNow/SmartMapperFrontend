@@ -173,14 +173,14 @@ export class IHMComponent implements OnInit, AfterViewInit {
             // geocoder: L.Control.Geocoder.nominatim({})
             // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
           }).addTo(this.carte);
-          /*if(itineraire1.){
-            circle.setStyle({color: 'green'});
-          }*/
+          itineraire1.on('routesfound', function(e) {
+            const routes = e.routes;
+            const summary = routes[0].summary;
+            if (summary.totalDistance > 1000){
+              circle.setStyle({color: 'red'});
+            }
+          });
           // const gph = L.geographPhotos({api_key: '47c9baf779', autoZoomOnAdd: true, query: 'canal'}).addTo(this.carte);
-          // itineraire1.hide().addTo(this.carte);
-          // this.carte.removeControl(itineraire1);
-          //  this.carte.itineraire1.hide();
-          //    L.Routing.itinerary().addTo(this.carte);
           markers = [...markers];
           results.addLayer(markerR);
           console.log(new ELG.ReverseGeocode());
