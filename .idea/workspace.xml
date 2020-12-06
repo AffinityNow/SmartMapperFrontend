@@ -286,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607289141751</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fix Typo Caroussel 2.2">
+      <created>1607289564030</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1607289564030</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,10 +443,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605189081207" />
-    <state x="320" y="143" key="Vcs.Push.Dialog.v2" timestamp="1607289144543">
+    <state x="320" y="143" key="Vcs.Push.Dialog.v2" timestamp="1607289566421">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607289144543" />
+    <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607289566421" />
     <state x="320" y="150" key="Vcs.Push.Dialog.v2/0.23.1440.800@0.23.1440.800" timestamp="1605274051704" />
     <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.793@0.25.1440.793" timestamp="1607269529715" />
     <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1607267824459" />
