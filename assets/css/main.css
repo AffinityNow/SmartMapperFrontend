@@ -15,12 +15,18 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
-.legend{
-  color: darkred;
+img.opacity {
+  opacity: 1;
+  /* IE8 et antérieurs */
+  filter: alpha(opacity=100);
+  /* Déclenche "hasLayout" dans IE 7 et antérieurs */
+  zoom: 1;
 }
 
-legend{
-  color: darkred;
+img.opacity:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=50);
+  zoom: 1;
 }
 body {
   background: #ffffff; }
