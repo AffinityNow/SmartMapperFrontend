@@ -15,6 +15,13 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+.legend{
+  color: darkred;
+}
+
+legend{
+  color: darkred;
+}
 body {
   background: #ffffff; }
   body.is-preload *, body.is-preload *:before, body.is-preload *:after {

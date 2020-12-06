@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Nouveau Design">
+    <list default="true" id="34743bff-a548-44d2-98bb-a63b67d6122a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
@@ -32,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/Test_Geo" />
+        <entry key="$PROJECT_DIR$" value="feature/Geolocalisation_Beta" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,6 +121,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
