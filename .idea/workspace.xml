@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Nouveau Design">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Nouveau Design" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -218,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605882930613</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Page Web V2.1 &quot;MAJ Fonctionalités&quot;">
+      <created>1607267822201</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607267822201</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +249,8 @@
     <MESSAGE value="Mise en page des deux cartes egales" />
     <MESSAGE value="Mise a jour page web" />
     <MESSAGE value="Nouveau Design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nouveau Design" />
+    <MESSAGE value="Page Web V2.1 &quot;MAJ Fonctionalités&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Page Web V2.1 &quot;MAJ Fonctionalités&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="443" y="278" key="#Notifications" timestamp="1605697941256">
@@ -361,12 +365,13 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605189081207" />
-    <state x="320" y="151" key="Vcs.Push.Dialog.v2" timestamp="1605882979151">
-      <screen x="0" y="25" width="1440" height="793" />
+    <state x="320" y="151" key="Vcs.Push.Dialog.v2" timestamp="1607267824459">
+      <screen x="0" y="25" width="1440" height="796" />
     </state>
     <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605728259568" />
     <state x="320" y="150" key="Vcs.Push.Dialog.v2/0.23.1440.800@0.23.1440.800" timestamp="1605274051704" />
     <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.793@0.25.1440.793" timestamp="1605882979151" />
+    <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1607267824459" />
     <state x="426" y="160" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1605882402533">
       <screen x="0" y="25" width="1440" height="793" />
     </state>
