@@ -30,6 +30,7 @@ import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 
+
 // Ahlem
 const greenIcon = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
@@ -79,12 +80,14 @@ export class IHMComponent implements OnInit, AfterViewInit {
     this.pointInteretService.loadPointInteretByCategorie(categorie).subscribe(res => this.pointInteretCurrent = res);
   }
 
+  // tslint:disable-next-line:typedef
   drawMarker(event) {
     const pointInteretSelectionnes = event.value;
     console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
     const pids = pointInteretSelectionnes;
     console.log('positions : ' + pids);
-    pids.forEach(pid => L.marker([pid.coordonnes.latitude,pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
+    // tslint:disable-next-line:max-line-length
+    pids.forEach(pid => L.marker([pid.coordonnes.latitude, pid.coordonnes.longitude], {icon: greenIcon}).addTo(this.carte).bindPopup(pid.description).openPopup());
   }
 
   ngAfterViewInit(): void {
@@ -173,6 +176,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
             // geocoder: L.Control.Geocoder.nominatim({})
             // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
           }).addTo(this.carte);
+          // tslint:disable-next-line:typedef only-arrow-functions
           itineraire1.on('routesfound', function(e) {
             const routes = e.routes;
             const summary = routes[0].summary;
@@ -201,6 +205,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
           console.log('markers', markers);
         }
       });
+
       const itineraire2 = L.Routing.control({
         waypoints: [
           L.latLng([coords.latitude, coords.longitude])
@@ -210,13 +215,15 @@ export class IHMComponent implements OnInit, AfterViewInit {
         routeWhileDragging: true,
         fitSelectedRoutes: true,
         router: L.Routing.osrmv1({serviceUrl: 'http://router.project-osrm.org/route/v1'}),
+        // @ts-ignore
         geocoder: L.Control.Geocoder.nominatim({})
         // router: new L.Routing.graphHopper('62403b36-c15e-4815-b284-8d68590b2bc1');
       }).addTo(this.carte);
+      // tslint:disable-next-line:only-arrow-functions typedef
       itineraire2.on('routesfound', function(e) {
         const routes = e.routes;
         const summary = routes[0].summary;
-        if (summary.totalDistance > 1000){
+        if (summary.totalDistance > 1000){ // changeRadius(test1)
           circle.setStyle({color: 'red'});
         }
       });
@@ -246,9 +253,10 @@ export class IHMComponent implements OnInit, AfterViewInit {
 
       document.getElementById('radius').addEventListener('input', changeRadius);
 
+      // tslint:disable-next-line:typedef
       function changeRadius(event) {
         const newRadius = event.target.value;
-        // tslint:disable-next-line:only-arrow-functions
+        // tslint:disable-next-line:only-arrow-functions typedef
         group.eachLayer(function(layer) {
           if (layer instanceof L.Circle) {
             layer.setRadius(newRadius); // obtenir le rayon
@@ -256,6 +264,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
         });
       }
 
+      // tslint:disable-next-line:no-shadowed-variable
       const circle = L.circle(test1, {
         radius: 1000,
       }).addTo(group);
