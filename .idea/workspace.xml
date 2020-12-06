@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="34743bff-a548-44d2-98bb-a63b67d6122a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +254,21 @@
       <option name="project" value="LOCAL" />
       <updated>1607269527872</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fix Typo Caroussel">
+      <created>1607288264530</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1607288264530</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fix Typo Caroussel 2">
+      <created>1607288489438</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1607288489438</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +299,9 @@
     <MESSAGE value="Page Web V2.1 &quot;MAJ Fonctionalités&quot;" />
     <MESSAGE value="Page Web V2.2 &quot;Ajout Scénario&quot;" />
     <MESSAGE value="Page Web V2.2 &quot;Ajout Scénario&quot; Styles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Page Web V2.2 &quot;Ajout Scénario&quot; Styles" />
+    <MESSAGE value="Fix Typo Caroussel" />
+    <MESSAGE value="Fix Typo Caroussel 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Typo Caroussel 2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="443" y="278" key="#Notifications" timestamp="1605697941256">
@@ -401,10 +416,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1605189081207" />
-    <state x="320" y="151" key="Vcs.Push.Dialog.v2" timestamp="1607269529715">
-      <screen x="0" y="25" width="1440" height="793" />
+    <state x="320" y="143" key="Vcs.Push.Dialog.v2" timestamp="1607288491032">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1605728259568" />
+    <state x="320" y="143" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1607288491032" />
     <state x="320" y="150" key="Vcs.Push.Dialog.v2/0.23.1440.800@0.23.1440.800" timestamp="1605274051704" />
     <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.793@0.25.1440.793" timestamp="1607269529715" />
     <state x="320" y="151" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1607267824459" />
