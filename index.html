@@ -24,9 +24,9 @@
 				<ul class="links">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="#fonctionalites">Fonctionalités</a></li>
+					<li><a href="#scenario">Scénarios</a></li>
 					<li><a href="#equipe">Equipe</a></li>
 					<li><a href="#reseaux">Resaux Sociaux</a></li>
-
 					
 				</ul>
 			</nav>
@@ -42,10 +42,10 @@
 
 		<!-- Highlights -->
 			<section class="wrapper">
-				<div class="inner">
+				<div id="fonctionalites" class="inner">
 					<header class="special">
 						<h2>SmartMapper en quelques mots </h2>
-						<p>Smart Mapper est une application web ayant pour but de mettre à disposition de ses utilisateurs un système intelligent 
+						<p>Smart Mapper est une application web ayant pour but de mettre à disposition de ses utilisateurs un système intelligent
 							de proposition d’itinéraires et de localisation des adresses. Quel que soit le moyen de déplacement
 							(à pieds, par voiture, par bus, par train, etc.) choisi par l’utilisateur, l’application lui proposera différents itinéraires respectants
 							un certains nombres de critères, tel que le passage par certains types de points d’intérêts sans avoir à les préciser
@@ -55,51 +55,27 @@
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+									<a href="#" class="icon fas fa-map-marked-alt"><span class="label">Icon</span></a>
 								</header>
-								<p>Avoir son propre espace utilisateur pour enregistrer ses informations, ses préferences (et definir certains points
-									d'interets comme favoris)
-								</p>
+								<p> Avoir la possibilté d'être géolocalisé sur la carte grâce à un ping, via le navigateur internet.</p>
 							</div>
 						</section>
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
+									<a href="#" class="icon fas fa-road"><span class="label">Icon</span></a>
 								</header>
-								<p>Besoin de réduire le temps d’attente d'un trajet</p>
+								<p> Avoir un apercu d'un itinéraire entre un point de départ (A) et d'arrivée (B) ainsi que les routes à emprunter, tout en ayant la possibilté
+								de rajouter d'autres "étapes" sur le chemin.</p>
 							</div>
 						</section>
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-floppy-o"><span class="label">Icon</span></a>
+									<a href="#" class="icon fas fa-search-location"><span class="label">Icon</span></a>
 								</header>
-								<p>Donner son avis et partager des informations sur les itinéraires proposés ou empruntés</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
-								</header>
-								<p>Connaître les avis des utilisateurs ayant déjà utilisés certains itinéraires</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
-								</header>
-								<p>Adaptation sur version mobile (IOS / ANDROID)</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
-								</header>
-								<p>Besoin de suggestion d’itinéraires personnalisés (conseillés et alternatifs)</p>
+								<p> Avoir l'emplacement d'un point d'intérêt (POI) le plus proche de notre point de départ ou d'arrivée et cela sur de nombreuses
+								catégories (fleuristes, boulageries, lieux de cultes, écoles, supermachés etc...).</p>
 							</div>
 						</section>
 					</div>
@@ -108,11 +84,15 @@
 
 		<!-- CTA -->
 			<section id="cta" class="wrapper">
-				<div id="fonctionalites" class="inner">
-					<h2>Les principales fonctionalités de notre application web</h2>
-					<h4>Géolocalisation sur la carte de la position de l'utilisateur via le navigateur </h4>
-					<h4>Recherche et affichage sur la carte d'un point d'interet et un cerlce d'un diametre de 1km 
-					est tracé et nous permet de voir le rayon d'action autours de ce point. </h4>
+				<div id="scenario" class="inner">
+					<h2>Quand utiliser SmartMapper à bon escient ...</h2>
+					<h3> Je souhaite aller de cher moi à l'université de Nanterre et savoir si en cette peridode de confinement mon déplacement
+						est autorisé par rapport aux règles de la COVID-19, pour cela je me rend sur l'application SmartMapper je renseigne moint point de départ (ou géolocalisation)
+					mon point d'arrivé et je valide. Dés lors je vors l'itinéraire s'afficher, si il se trouve dans un rayon autorisé le gouvernement, représenté par un cercle (bleu si valide, rouge sinon) sur la carte,
+					je peux me rendre à ma destination.
+					</h3>
+					<h3>
+					</h3>
 				</div>
 			</section>
 
@@ -226,6 +206,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>

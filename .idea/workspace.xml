@@ -21,6 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6c01c130-9c89-49ca-a011-07de138b96c6" name="Default Changelist" comment="Nouveau Design">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/espace-utilisateur" />
+        <entry key="$PROJECT_DIR$" value="feature/Test_Geo" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -118,6 +120,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
         <item itemvalue="Karma.AppComponent.should create the app" />
@@ -380,9 +383,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="390" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1605688861943" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1605196518414">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="385" y="198" width="670" height="596" key="search.everywhere.popup" timestamp="1607267411143">
+      <screen x="0" y="25" width="1440" height="793" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1605196518414" />
+    <state x="385" y="198" width="670" height="596" key="search.everywhere.popup/0.25.1440.793@0.25.1440.793" timestamp="1607267411143" />
   </component>
 </project>
