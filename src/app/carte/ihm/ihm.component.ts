@@ -30,7 +30,6 @@ import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.js';
-import 'leaflet.locatecontrol/src/L.Control.Locate.js';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 // import any = jasmine.any;
 
@@ -75,7 +74,6 @@ export class IHMComponent implements OnInit, AfterViewInit {
   displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
   marker;
-
 
   constructor(private pointInteretService: PointInteretService) {
   }
@@ -130,12 +128,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
       );
       this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
       // @ts-ignore
-      L.control.locate({
-        position: 'topleft',
-        strings: {
-          title: "Géolocalisé vous"
-        }
-      }).addTo(this.carte);
+      L.control.locate().addTo(this.carte);
       const searchControl = ELG.geosearch().addTo(this.carte);
       const results = L.layerGroup().addTo(this.carte);
       let markers = [];
