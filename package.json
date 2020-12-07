@@ -71,6 +71,14 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.0.5"
-  }
+    "typescript": "^4.0.5",
+    "@asymmetrik/ngx-leaflet": "^6.0.1",
+    "leaflet": "^1.5.7",
+    "leaflet-control-geocoder": "^1.8.2",
+    "leaflet.fullscreen": "^1.5.1",
+    "leaflet.markercluster": "^1.4.1",
+    "@types/leaflet.markercluster": "^1.4.2",
+    "@types/leaflet.fullscreen": "^1.6.0"
+
+   }
 }

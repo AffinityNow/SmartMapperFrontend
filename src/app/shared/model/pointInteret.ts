@@ -1,37 +1,37 @@
-//*******************Ahlem*****************************************
 export class PointInteret{
-   id:number;
-   name : string;
-   coordonnes:Coordonnees;
-   description:string;
-   itineraire:Itineraire;
-   adresse:Adresse;
-   categories:Categorie[];
+  id:number;
+  name : string;
+  coordonnes:Coordonnees;
+  description:string;
+  itineraire:Itineraire;
+  adresse:Adresse;
+  categories:Categorie[];
 }
 
 export class Coordonnees{
-   id:number;
-   longitude:number;
-   latitude:number;
-   point:PointInteret;
+  id:number;
+  longitude:number;
+  latitude:number;
+  point:PointInteret;
 }
 export class Itineraire{
-   id:number;
-   name:string;
+  id:number;
+  name:string;
 
 }
 export class Adresse{
-    name:string;
-    lines:string;
-    codePostal:string;
-    ville:string;
-    pays:string;
+  name:string;
+  lines:string;
+  codePostal:string;
+  ville:string;
+  pays:string;
 }
 export class Categorie{
-    id:number;
-    point :PointInteret;
-    name:string;
+  id:number;
+  point :PointInteret;
+  name:string;
 }
+
 
 export const Categories = {
   RESTAURATION: { libelle: 'Restauration', icon: "../assets/icons/restaurant.png"},
@@ -41,7 +41,7 @@ export const Categories = {
   SPORTS: { libelle: 'Sports', icon: "../assets/icons/sports.png"},
   EDUCATION: { libelle: 'Education', icon: "../assets/icons/school.png"},
   CULTES: { libelle: 'Cultes', icon: "../assets/icons/foundation.png"},
-  COMMERCE: { libelle: 'Commerce', icon: "../assets/icons/shopping.png"},
+  COMMERCE: { libelle: 'Commerces, consommation', icon: "../assets/icons/shopping.png"},
 } as const
 
 export type Categories = keyof typeof Categories
