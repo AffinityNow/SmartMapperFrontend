@@ -15,8 +15,6 @@ import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {PointInteretService} from './shared/service/point-interet.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {RecherchPointInteretComponent} from "./carte/recherch-point-interet/recherch-point-interet.component";
-import {LocalisationComponent} from "./carte/localisation/localisation.component";
 import {CarouselModule} from 'primeng/carousel';
 import {OrderListModule} from 'primeng/orderlist';
 import {IHMComponent} from "./carte/ihm/ihm.component";
@@ -26,14 +24,6 @@ const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
-  },
-  {
-    path: 'localisation',
-    component: LocalisationComponent
-  }
-  , {
-    path: 'recherchePOI',
-    component: RecherchPointInteretComponent
   }
   ,
   {
@@ -49,8 +39,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    LocalisationComponent,
-    RecherchPointInteretComponent,
     IHMComponent
   ],
   imports: [
