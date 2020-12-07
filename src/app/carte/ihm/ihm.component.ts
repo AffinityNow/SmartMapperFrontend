@@ -50,22 +50,21 @@ L.Icon.Default.mergeOptions({
 })
 export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
   // Erwyn
-  searchField: FormControl;
-  searches: string[] = [];
-  carte;
   /* https://www.zupimages.net/*/
   smallIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/43/a73q.png', iconSize: [25, 25],});
   ImageIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/45/ox4s.png', iconSize: [25, 25],});
   GeollocIcon = new L.Icon({iconUrl: 'https://www.zupimages.net/up/20/47/gk6n.png', iconSize: [25, 25],});
+  searchField: FormControl;
+  searches: string[] = [];
+  carte;
 
 // *******************Ahlem*****************************************
   destroy$: Subject<boolean> = new Subject<boolean>();
   pointInteretSelectionnes: string[];
-  caterogies: any[];
   pointInteretCurrent: PointInteret[] = [];
+  caterogies: any[];
   displayAddressList = false;
   poiAvailable = false;
-  map;
   marker;
 
   constructor(private pointInteretService: PointInteretService) {

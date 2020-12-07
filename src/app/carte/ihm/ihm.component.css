@@ -29,6 +29,7 @@ h1{
 .leaflet-control-container .leaflet-routing-container-hide {
   display: none;
 }
+
 p-carousel{
   border: 1px solid var(--surface-d);
   border-radius: 3px;
@@ -36,7 +37,18 @@ p-carousel{
   text-align: center;
   padding: 2rem 0;
 }
-
+/* Absolute Center Spinner */
+.loading {
+  position: fixed;
+  z-index: 999;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 20%;
+}
 :host ::ng-deep .p-orderlist-list{
   height: 200px;
 }
