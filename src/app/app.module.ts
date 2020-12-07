@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './shared/home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FooterComponent} from './shared/footer/footer.component';
+import {HeaderComponent} from './shared/header/header.component';
+import {HomeComponent} from './shared/home/home.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatOptionModule} from '@angular/material/core';
@@ -29,7 +29,6 @@ const appRoutes: Routes = [
     path: 'IHM',
     component: IHMComponent
   }
-
 ];
 
 @NgModule({
@@ -55,10 +54,10 @@ const appRoutes: Routes = [
     CarouselModule,
     OrderListModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [PointInteretService, HttpClient],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {
+}
 

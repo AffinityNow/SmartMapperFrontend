@@ -48,7 +48,7 @@ L.Icon.Default.mergeOptions({
   templateUrl: './ihm.component.html',
   styleUrls: ['./ihm.component.css']
 })
-export class RecherchPointInteretComponent implements OnInit, OnDestroy, AfterViewInit {
+export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
   // Erwyn
   searchField: FormControl;
   searches: string[] = [];

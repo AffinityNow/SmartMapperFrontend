@@ -36,3 +36,7 @@ p-carousel{
   text-align: center;
   padding: 2rem 0;
 }
+
+:host ::ng-deep .p-orderlist-list{
+  height: 200px;
+}
