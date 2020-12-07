@@ -17,15 +17,14 @@ import {PointInteretService} from './shared/service/point-interet.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CarouselModule} from 'primeng/carousel';
 import {OrderListModule} from 'primeng/orderlist';
-import {IHMComponent} from "./carte/ihm/ihm.component";
+import {IHMComponent} from './carte/ihm/ihm.component';
 
 
 const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
-  }
-  ,
+  },
   {
     path: 'IHM',
     component: IHMComponent
