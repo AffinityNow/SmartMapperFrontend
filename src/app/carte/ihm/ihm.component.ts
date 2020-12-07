@@ -74,6 +74,8 @@ export class IHMComponent implements OnInit, AfterViewInit {
   displayAddressList = false;
   pointInteretCurrent: PointInteret[] = [];
   marker;
+  rayon = 1000;
+  limite = 20000;
 
   constructor(private pointInteretService: PointInteretService) {
   }
@@ -244,7 +246,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
 
       // tslint:disable-next-line:no-shadowed-variable
       const circle = L.circle(test1, {
-        radius: 1000,
+        radius: this.rayon,
       }).addTo(group);
 
       // tslint:disable-next-line:no-shadowed-variable

@@ -94,10 +94,9 @@
 
 <div class="map-wrapper">
   <label for="radius">Diamètre </label>
-  <input id="radius" type="range" value="10000" min="1000" max="20000" oninput="this.nextElementSibling.value = this.value">
-  <output>1000</output>(M)
+  <input id="radius" type="range" value="1000" min="1000" max="20000" oninput="this.nextElementSibling.value = this.value">
+  <output>1000 {{rayon}}</output>(M)
 
- <!--  <input id="radius" type="range" min=1000 max=20000 value=1000 /> -->
   <div class="map-border">
     <div id="map"></div>
   </div>
