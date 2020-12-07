@@ -29,6 +29,7 @@ import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+// import any = jasmine.any;
 
 
 // Ahlem
@@ -154,7 +155,6 @@ export class IHMComponent implements OnInit, AfterViewInit {
         draggable: true,
         autoPan: true
       }).addTo(this.carte);
-
       searchControl.on('results', (data) => {
         markers = [];
         console.log('data', data);
@@ -180,7 +180,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
           itineraire1.on('routesfound', function(e) {
             const routes = e.routes;
             const summary = routes[0].summary;
-            if (summary.totalDistance > 1000){
+            if (summary.totalDistance > 20000){
               circle.setStyle({color: 'red'});
             }
           });
@@ -223,7 +223,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
       itineraire2.on('routesfound', function(e) {
         const routes = e.routes;
         const summary = routes[0].summary;
-        if (summary.totalDistance > 1000){ // changeRadius(test1)
+        if (summary.totalDistance > 20000){ // changeRadius(test1)
           circle.setStyle({color: 'red'});
         }
       });
