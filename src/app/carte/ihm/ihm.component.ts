@@ -14,7 +14,7 @@ import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import * as ELG from 'esri-leaflet-geocoder';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import 'leaflet/dist/leaflet.css';
-import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer} from 'leaflet';
+import {Browser, circle, Control, control, Icon, icon, latLng, map, marker, polyline, tileLayer,} from 'leaflet';
 import scale = control.scale;
 import 'leaflet-easybutton';
 import 'leaflet-easybutton/src/easy-button.css';
@@ -29,6 +29,9 @@ import 'esri-leaflet-geocoder/dist/esri-leaflet-geocoder';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet-routing-machine';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min.js';
+import 'leaflet.locatecontrol/src/L.Control.Locate.js';
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 // import any = jasmine.any;
 
 
@@ -73,6 +76,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
   pointInteretCurrent: PointInteret[] = [];
   marker;
 
+
   constructor(private pointInteretService: PointInteretService) {
   }
 
@@ -92,13 +96,14 @@ export class IHMComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.createMap();
+    this.createMap()
   }
+
 
   ngOnInit(): void {
     this.caterogies = [Categories.COMMERCE, Categories.EDUCATION, Categories.SPORTS, Categories.TRANSPORTS,
       Categories.HOTELS, Categories.SANTE, Categories.RESTAURATION, Categories.CULTES];
-// *****************************************************************
+    // *****************************************************************
 
 // Erwyn
     this.searchField = new FormControl();
@@ -124,7 +129,13 @@ export class IHMComponent implements OnInit, AfterViewInit {
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
       this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
-
+      // @ts-ignore
+      L.control.locate({
+        position: 'topleft',
+        strings: {
+          title: "Géolocalisé vous"
+        }
+      }).addTo(this.carte);
       const searchControl = ELG.geosearch().addTo(this.carte);
       const results = L.layerGroup().addTo(this.carte);
       let markers = [];
@@ -257,6 +268,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
     this.watchPosition();
   }
 
+
   // tslint:disable-next-line:typedef
   watchPosition() {
     const desLat = 0;
@@ -280,6 +292,7 @@ export class IHMComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
 
 
 }
