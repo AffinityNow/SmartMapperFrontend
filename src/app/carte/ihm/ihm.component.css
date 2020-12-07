@@ -39,7 +39,7 @@ p-carousel{
 }
 /* Absolute Center Spinner */
 .loading {
-  position: fixed;
+  position: absolute;
   z-index: 999;
   margin: auto;
   top: 0;
