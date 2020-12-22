@@ -23,6 +23,7 @@ import 'leaflet-control-geocoder';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import scale = control.scale;
+import {GeolocationService} from "../../shared/service/GeolocationService";
 
 
 // Ahlem
@@ -66,11 +67,12 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
   displayAddressList = false;
   poiAvailable = false;
   marker;
+  coords;
 
-  constructor(private pointInteretService: PointInteretService) {
+  constructor(private pointInteretService: PointInteretService, private geoLoc: GeolocationService) {
   }
 
-  getCurrentPointInteret(categorie: string): void {
+/*  getCurrentPointInteret(categorie: string): void {
     this.displayAddressList = true;
     this.poiAvailable = true;
     this.pointInteretService.loadPointInteretByCategorie(categorie).pipe(takeUntil(this.destroy$))
@@ -78,15 +80,32 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
         this.pointInteretCurrent = res;
         this.poiAvailable = false;
       });
+  }*/
+
+  getCurrentPointInteret(categorie: string): void {
+    this.displayAddressList = true;
+    this.poiAvailable = true;
+    this.pointInteretService.loadPointInteretByCategorieAndPosition(categorie, this.coords.latitude, this.coords.longitude)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => {
+        this.pointInteretCurrent = res;
+        this.drawMarker(this.pointInteretCurrent[0]);
+        this.drawMarker(this.pointInteretCurrent[1]);
+        this.poiAvailable = false;
+      });
+    console.log( "ma position ",categorie, this.coords.latitude, this.coords.longitude);
+  }s
+  drawMarker(poi:PointInteret):void{
+    L.marker([poi.coordonnes.latitude, poi.coordonnes.longitude], {icon: greenIcon})
+      .addTo(this.carte).bindPopup(poi.name+"<br>"+poi.description).openPopup();
   }
 
-  drawMarker(event) {
+  drawMarkerEvent(event) {
     const pointInteretSelectionnes = event.value;
     console.log('pointInteretSelectionnes : ' + pointInteretSelectionnes);
     const pids = pointInteretSelectionnes;
     console.log('positions : ' + pids);
-    pids.forEach(pid => L.marker([pid.coordonnes.latitude, pid.coordonnes.longitude], {icon: greenIcon})
-      .addTo(this.carte).bindPopup(pid.description).openPopup());
+    pids.forEach(pid => this.drawMarker(pid));
   }
 
   ngAfterViewInit(): void {
@@ -116,15 +135,14 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
-  // tslint:disable-next-line:typedef
+
   createMap() {
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
-    navigator.geolocation.getCurrentPosition((position) => {
-      const coords = position.coords;
-      const latLong = [coords.latitude, coords.longitude];
-      console.log(
+    this.geoLoc.getCurrentPosition().subscribe(position => {
+      this.coords = position.coords;
+      console.log( "ma position :",
         `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
       );
       this.carte = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
@@ -148,7 +166,7 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
           const itineraire1 = L.Routing.control({
             waypoints: [
               L.latLng(result.latlng),
-              L.latLng([coords.latitude, coords.longitude])
+              L.latLng([this.coords.latitude, this.coords.longitude])
             ],
             useZoomParameter: false,
             autoRoute: true,
@@ -188,7 +206,7 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
 
       const itineraire2 = L.Routing.control({
         waypoints: [
-          L.latLng([coords.latitude, coords.longitude])
+          L.latLng([this.coords.latitude, this.coords.longitude])
         ],
         useZoomParameter: false,
         autoRoute: true,
@@ -225,7 +243,7 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
         detectRetina: true,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       });
-      const testgeo = L.marker([coords.latitude, coords.longitude]);
+      const testgeo = L.marker([this.coords.latitude, this.coords.longitude]);
       const test1 = (testgeo.getLatLng());
       const group = L.layerGroup().addTo(this.carte);
 
@@ -245,6 +263,7 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
       // tslint:disable-next-line:no-shadowed-variable
       const circle = L.circle(test1, {
         radius: 1000,
+
       }).addTo(group);
 
       // tslint:disable-next-line:no-shadowed-variable
@@ -252,36 +271,12 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
       // https://www.liedman.net/leaflet-routing-machine/api/
       // calcule la distance entre 2 marker
       const baseMaps = {carte1, carte2, carte3};
-      const Geomarker = L.marker([coords.latitude, coords.longitude], {icon: this.GeollocIcon}).addTo(this.carte);
+      const Geomarker = L.marker([this.coords.latitude, this.coords.longitude], {icon: this.GeollocIcon}).addTo(this.carte);
       Geomarker.bindPopup('<b>Vous êtes ici</b>').openPopup();
       // faire pour les images
       const controller = L.control.layers(baseMaps).addTo(this.carte).setPosition('bottomleft');
       scale().addTo(this.carte);
     });
-    this.watchPosition();
-  }
 
-  // tslint:disable-next-line:typedef
-  watchPosition() {
-    const desLat = 0;
-    const desLon = 0;
-    const id = navigator.geolocation.watchPosition(
-      (position) => {
-        console.log(
-          `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
-        );
-        if (position.coords.latitude === desLat) {
-          navigator.geolocation.clearWatch(id);
-        }
-      },
-      (err) => {
-        console.log(err);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0,
-      }
-    );
   }
 }

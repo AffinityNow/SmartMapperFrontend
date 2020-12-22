@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {CarouselModule} from 'primeng/carousel';
 import {OrderListModule} from 'primeng/orderlist';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {GeolocationService} from "./shared/service/GeolocationService";
 
 
 
@@ -59,7 +60,7 @@ const appRoutes: Routes = [
     ProgressSpinnerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [PointInteretService, HttpClient],
+  providers: [PointInteretService, GeolocationService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule {

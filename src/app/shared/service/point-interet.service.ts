@@ -9,7 +9,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PointInteretService{
-  private REST_API_SERVER = "http://localhost:8080/point-interet/categorie/";
+  private GET_POI_BY_CATEGORY_URL = "http://localhost:8080/point-interet/categorie/";
+  private GET_POI_BY_CATEGORY_AND_POSITION_URL = "http://localhost:8080/point-interet/categorie/";
   constructor(private httpClient : HttpClient) { }
 
   // Adding HTTP Error Handling with RxJS catchError() & HttpClient
@@ -28,7 +29,11 @@ export class PointInteretService{
   }
 
   public loadPointInteretByCategorie(categorie:string): Observable<PointInteret[]>{
-    return this.httpClient.get<PointInteret[]>(this.REST_API_SERVER +categorie).pipe(retry(3),catchError(this.handleError));
+    return this.httpClient.get<PointInteret[]>(this.GET_POI_BY_CATEGORY_URL +categorie).pipe(retry(3),catchError(this.handleError));
+  }
+
+  public loadPointInteretByCategorieAndPosition(categorie:string, lat:number, lg:number): Observable<PointInteret[]>{
+    return this.httpClient.get<PointInteret[]>(this.GET_POI_BY_CATEGORY_AND_POSITION_URL+categorie+"/"+lat+"/"+lg).pipe(retry(3),catchError(this.handleError));
   }
 }
 
