@@ -3,7 +3,10 @@
 
 module.exports = function (config) {
   config.set({
+
+    // Chemin de base pour la résolution des fichiers à inclure
     basePath: '',
+    // Nom du framework de tests à utiliser (jasmine/...)
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -18,14 +21,20 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/SmartMapper'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 50,
+        lines: 50,
+        branches: 50,
+        functions: 50
+      }
     },
+    // Création de rapports
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessNoSandbox'],
+    browsers: ['ChromeHeadless', 'ChromeHeadlessNoSandbox'],
     // you can define custom flags
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
@@ -33,7 +42,11 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    // Active le mode intégration continue
     singleRun: false,
-    restartOnFileChange: true
+    // Lance les tests automatiquement lors d'une modification
+    restartOnFileChange: true,
+    // à un fichier (si à true)
+    autoWatch: true,
   });
 };

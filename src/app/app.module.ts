@@ -5,7 +5,8 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {IHMComponent} from './carte/ihm/ihm.component';
-import {PointInteretService} from './shared/service/point-interet.service';
+import {GeolocationService} from "./shared/service/GeolocationService";
+import {PoiService} from "./shared/service/poi.service";
 import {FooterComponent} from './shared/footer/footer.component';
 import {HeaderComponent} from './shared/header/header.component';
 import {HomeComponent} from './shared/home/home.component';
@@ -20,7 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {CarouselModule} from 'primeng/carousel';
 import {OrderListModule} from 'primeng/orderlist';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {GeolocationService} from "./shared/service/GeolocationService";
+
 
 
 
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
     ProgressSpinnerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [PointInteretService, GeolocationService, HttpClient],
+  providers: [PoiService, GeolocationService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule {

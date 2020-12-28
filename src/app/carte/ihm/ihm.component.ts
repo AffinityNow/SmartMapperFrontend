@@ -1,7 +1,8 @@
 // Ahlem
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {Categories, PointInteret} from '../../shared/model/pointInteret';
-import {PointInteretService} from '../../shared/service/point-interet.service';
+import {GeolocationService} from "../../shared/service/GeolocationService";
+import {PoiService} from "../../shared/service/poi.service";
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -23,7 +24,7 @@ import 'leaflet-control-geocoder';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'style-loader!esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css';
 import scale = control.scale;
-import {GeolocationService} from "../../shared/service/GeolocationService";
+
 
 
 // Ahlem
@@ -69,18 +70,8 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
   marker;
   coords;
 
-  constructor(private pointInteretService: PointInteretService, private geoLoc: GeolocationService) {
+  constructor(private pointInteretService: PoiService, private geoLoc: GeolocationService) {
   }
-
-/*  getCurrentPointInteret(categorie: string): void {
-    this.displayAddressList = true;
-    this.poiAvailable = true;
-    this.pointInteretService.loadPointInteretByCategorie(categorie).pipe(takeUntil(this.destroy$))
-      .subscribe(res => {
-        this.pointInteretCurrent = res;
-        this.poiAvailable = false;
-      });
-  }*/
 
   getCurrentPointInteret(categorie: string): void {
     this.displayAddressList = true;
@@ -94,7 +85,7 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
         this.poiAvailable = false;
       });
     console.log( "ma position ",categorie, this.coords.latitude, this.coords.longitude);
-  }s
+  }
   drawMarker(poi:PointInteret):void{
     L.marker([poi.coordonnes.latitude, poi.coordonnes.longitude], {icon: greenIcon})
       .addTo(this.carte).bindPopup(poi.name+"<br>"+poi.description).openPopup();
@@ -277,6 +268,5 @@ export class IHMComponent  implements OnInit, OnDestroy, AfterViewInit {
       const controller = L.control.layers(baseMaps).addTo(this.carte).setPosition('bottomleft');
       scale().addTo(this.carte);
     });
-
   }
 }
