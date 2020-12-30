@@ -1,3 +1,4 @@
+//*******************Ahlem*****************************************
 export class PointInteret{
   id:number;
   name : string;
@@ -26,12 +27,12 @@ export class Adresse{
   ville:string;
   pays:string;
 }
+
 export class Categorie{
   id:number;
   point :PointInteret;
   name:string;
 }
-
 
 export const Categories = {
   RESTAURATION: { libelle: 'Restauration', icon: "../assets/icons/restaurant.png"},
