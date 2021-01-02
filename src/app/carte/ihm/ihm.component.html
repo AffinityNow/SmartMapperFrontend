@@ -101,7 +101,7 @@
     </p-carousel>
   </div>
   <p-progressSpinner class="loading" *ngIf="poiAvailable"></p-progressSpinner>
-  <p-orderList *ngIf="displayAddressList" [value]="pointInteretCurrent" (onSelectionChange)="drawMarker($event)">
+  <p-orderList *ngIf="displayAddressList" [value]="pointInteretCurrent" (onSelectionChange)="drawMarkerEvent($event)">
     <mat-option *ngFor="let pi of pointInteretCurrent" [value]="pi">{{pi}}</mat-option>
     <ng-template let-pid pTemplate="item">
       <div>
